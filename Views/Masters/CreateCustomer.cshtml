@@ -1,0 +1,1375 @@
+﻿@{
+    ViewBag.Title = "Customer";
+    ViewBag.pTitle = "Customer Management";
+    ViewBag.pageTitle = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-header">
+                <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#addBasic-details-info" role="tab">
+                            Basic Details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#addFinance-details-info" role="tab">
+                           Finance
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#addOpening-Balance-info" role="tab">
+                           Opening Balance
+                        </a>
+                    </li>
+                    <li class="nav-item" id="Addresstab" style="/* display: none; */">
+                        <a class="nav-link" data-bs-toggle="tab" onclick="GetAddressDetails()" href="#addAddress-details-info" role="tab">
+                            Address Details
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <!-- end card header -->
+                <div class="card-body">
+                    <div class="tab-content">
+                    <div class="tab-pane active" id="addBasic-details-info" role="tabpanel">
+                       
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="CustomerCodeinput">Customer Code<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="CustomerCodeinput" placeholder="Enter Customer Code" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="CustomerNameinput">Customer Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="CustomerNameinput" placeholder="Enter Customer Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="CustomerNameArinput">
+                                        Customer Name Ar<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="CustomerNameArinput" placeholder="Enter Customer Name Ar">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Customergroupinput">Customer Group<span class="text-danger">*</span></label>
+                                    <select class="form-select" id="Customergroupinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="Company">Company</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div>
+                                    <label class="form-label" for="Addressinput">Full Address<span class="text-danger">*</span></label> 
+                                    <textarea class="form-control" id="Addressinput" rows="1" placeholder="Enter Address" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="VatNumberinput">VAT No.<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="VatNumberinput" placeholder="Enter VAT">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label class="form-label" for="CRnumberinput">CR No.</label>
+                                    <input type="text" class="form-control" id="CRnumberinput" placeholder="CR No.">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="shortAddressinput">short Address<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="shortAddressinput" rows="1" placeholder="Enter Address" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="buildingnoInput" class="form-label">Building No.</label>
+                                    <input type="number" class="form-control" id="buildingnoInput" placeholder="Building No." required />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="StreetInput" class="form-label">Street Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="StreetInput" placeholder="Enter Street" required />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="cityInput" class="form-label">City <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="cityInput" placeholder="Enter city" required />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="StateInput" class="form-label">State<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="StateInput" placeholder="Enter State" required />
+                                </div>
+                            </div>
+                             
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Accounttypeinput">Account Type**</label>
+                                    <select class="form-select" id="Accounttypeinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="Sundry debtors">Sundry debtors</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Countryinput">Country</label>
+                                    <select class="form-select" id="Countryinput" data-choices data-choices-search-false>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Postalcodeinput">Postal Code</label>
+                                    <input type="text" class="form-control" id="Postalcodeinput" placeholder="Enter Postal Code">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Telnumberinput">Telephone No.</label>
+                                    <input type="text" class="form-control" id="Telnumberinput" placeholder="Enter Tel No.">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Faxnumberinput">Fax No.</label>
+                                    <input type="text" class="form-control" id="Faxnumberinput" placeholder="Enter Fax No.">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Emailidinput">Email ID </label>
+                                    <input type="text" class="form-control" id="Emailidinput" placeholder="Enter Email id ">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label class="form-label" for="Websiteinput">Website</label>
+                                    <input type="text" class="form-control" id="Websiteinput" placeholder="Enter Website">
+                                </div>
+                            </div>
+                             
+                        </div>
+                    </div>
+                        <!-- end tab-pane -->
+                    <div class="tab-pane" id="addFinance-details-info" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="billingcurrencyinput" class="form-label">Billing Currency</label>
+                                    <select class="form-select" id="billingcurrencyinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option> 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="pricelevelinput" class="form-label">Default Price List</label>
+                                    <select class="form-select" id="pricelevelinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="Wholesale">Wholesale</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Custom">Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div >
+                                    <label for="creditlimitInput" class="form-label">Credit Limit</label>
+                                    <input type="number" id="creditlimitInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="paytermsInput" class="form-label">Payment Terms (In days)</label>
+                                    <input type="number" id="paytermsInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="monthlybudgetInput" class="form-label">Monthly Budget</label>
+                                    <input type="number" id="monthlybudgetInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div>
+                                    <label for="salesmaninput" class="form-label">Sales Man</label>
+                                    <select class="form-select" id="salesmaninput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option> 
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div>
+                                    <label for="commisionrateInput" class="form-label">Commision Rate</label>
+                                    <input type="number" id="commisionrateInput" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row --> 
+                    </div>
+                    <!-- end tab pane -->
+                    <div class="tab-pane" id="addOpening-Balance-info" role="tabpanel">
+                        <div class="card" id="openbalanceList">
+                            <div class="card-body border border-dashed border-end-0 border-start-0">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-xxl-4 col-sm-6">
+                                            <div class="search-box">
+                                                <input type="text" class="form-control search" placeholder="Search for userId,Name,Department or something...">
+                                                <i class="ri-search-line search-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5 class="card-title mb-0"> </h5>
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <div class="d-flex gap-1 flex-wrap">
+                                                <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addopening"><i class="ri-add-line align-bottom me-1"></i> Add Opening</button>
+                                                @*  <button type="button" class="btn btn-info"><i class="ri-file-download-line align-bottom me-1"></i> Import</button> *@
+                                                <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div>
+                                    <div class="table-responsive table-card mb-1">
+                                        <table class="table table-nowrap align-middle" id="custOpenBalanceTable">
+                                            <thead class="text-muted table-light">
+                                                <tr class="text-uppercase">
+                                                    <th scope="col" style="width: 25px;">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                        </div>
+                                                    </th>
+                                                    <th class="sort" data-sort="id">Id</th>
+                                                    <th class="sort" data-sort="date">Date</th>
+                                                    <th class="sort" data-sort="location">Location</th>
+                                                    <th class="sort" data-sort="refNo">Ref No.</th>
+                                                    <th class="sort" data-sort="voucherNo">Voucher No.</th>
+                                                    <th class="sort" data-sort="dr">Dr</th>
+                                                    <th class="sort" data-sort="cr">Cr</th>
+                                                    <th class="sort" data-sort="action">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list form-check-all">
+                                                <tr id="idtruserTable">
+                                                    <th scope="row">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
+                                                        </div>
+                                                    </th>
+                                                    <td class="id">VZ01</td>
+                                                    <td class="date">25/05/2023</td>
+                                                    <td class="location">Main Location</td>/
+                                                    <td class="refNo">REF98291</td>
+                                                    <td class="voucherNo">1343243</td>
+                                                    <td class="dr">12.35</td>
+                                                    <td class="cr">23.24</td>
+                                                    <td class="action">
+                                                        <ul class="list-inline hstack gap-2 mb-0">
+                                                            <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                                                <a href="#" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                                    <i class="ri-pencil-fill fs-16"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
+                                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#">
+                                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="noresult" style="display: none">
+                                            <div class="text-center">
+                                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                                <p class="text-muted">We've searched more than 150+ Users We did not find any Users for you search.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="pagination-wrap hstack gap-2">
+                                            <a class="page-item pagination-prev disabled" href="#">
+                                                Previous
+                                            </a>
+                                            <ul class="pagination listjs-pagination mb-0"></ul>
+                                            <a class="page-item pagination-next" href="#">
+                                                Next
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                       
+                    </div>
+                    <!-- end tab pane -->
+                    <div class="tab-pane" id="addAddress-details-info" role="tabpanel">
+                        <div class="card" id="custAddressList">
+                        @*     <div class="card-header">
+                                <h5 class="card-title mb-0">Additional Contact Details</h5>
+                            </div>
+                         *@
+                            <div class="card-body border border-dashed border-end-0 border-start-0">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-xxl-4 col-sm-6">
+                                            <div class="search-box">
+                                                <input type="text" class="form-control search" placeholder="Search for userId,Name,Department or something...">
+                                                <i class="ri-search-line search-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5 class="card-title mb-0"> </h5>
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <div class="d-flex gap-1 flex-wrap">
+                                                <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addAddress"><i class="ri-add-line align-bottom me-1"></i> Add Address</button>
+                                                @* <button type="button" class="btn btn-info"><i class="ri-file-download-line align-bottom me-1"></i> Import</button> *@
+                                                <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div>
+                                    <div class="table-responsive table-card mb-1">
+                                        <table class="table table-nowrap align-middle" id="custAddressTable">
+                                            <thead class="text-muted table-light">
+                                                <tr class="text-uppercase">
+                                                    <th scope="col" style="width: 25px;">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                        </div>
+                                                    </th> 
+                                                    <th class="sort" data-sort="id">Id</th>
+                                                    <th class="sort" data-sort="addresscode">Code</th>
+                                                    <th class="sort" data-sort="addressName">Name</th>
+                                                    <th class="sort" data-sort="addressNameAr"> Name Ar</th>
+                                                    <th class="sort" data-sort="addressShortAddress">Short Address</th>
+                                                    <th class="sort" data-sort="addressBuildingNo">Building No</th>
+                                                    <th class="sort" data-sort="addressStreetName">Street Name</th>
+                                                    <th class="sort" data-sort="addressSecondaryNo">Secondary No</th>
+                                                    <th class="sort" data-sort="addressCity">City</th>
+                                                    <th class="sort" data-sort="addressDistrict">District</th>
+                                                    <th class="sort" data-sort="addressState">State</th>
+                                                    <th class="sort" data-sort="addressPostalCode">Postal Code</th>
+                                                    <th class="sort" data-sort="addressCountry">Country</th>
+                                                    <th class="sort" data-sort="addressTelNo">Tel No</th>
+                                                    <th class="sort" data-sort="action">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list form-check-all">
+                                                <tr id="idtruserTable">
+                                                    <th scope="row">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
+                                                        </div>
+                                                    </th>
+                                                    <td class="id">VZA01</td>
+                                                    <th class="sort" data-sort="addresscode">NM01</th>
+                                                    <th class="sort" data-sort="addressName">Test</th>
+                                                    <th class="sort" data-sort="addressNameAr"> Test Ar</th>
+                                                    <th class="sort" data-sort="addressShortAddress">Short Address</th>
+                                                    <th class="sort" data-sort="addressBuildingNo">Building No</th>
+                                                    <th class="sort" data-sort="addressStreetName">Street Name</th>
+                                                    <th class="sort" data-sort="addressSecondaryNo">Secondary No</th>
+                                                    <th class="sort" data-sort="addressCity">City</th>
+                                                    <th class="sort" data-sort="addressDistrict">District</th>
+                                                    <th class="sort" data-sort="addressState">State</th>
+                                                    <th class="sort" data-sort="addressPostalCode">Postal Code</th>
+                                                    <th class="sort" data-sort="addressCountry">Country</th>
+                                                    <th class="sort" data-sort="addressTelNo">Tel No</th> 
+                                                    <td class="action">
+                                                        <ul class="list-inline hstack gap-2 mb-0">
+                                                            <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                                                <a href="#" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                                    <i class="ri-pencil-fill fs-16"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
+                                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#">
+                                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="noresult" style="display: none">
+                                            <div class="text-center">
+                                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                                <p class="text-muted">We've searched more than 150+ Users We did not find any Users for you search.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="pagination-wrap hstack gap-2">
+                                            <a class="page-item pagination-prev disabled" href="#">
+                                                Previous
+                                            </a>
+                                            <ul class="pagination listjs-pagination mb-0"></ul>
+                                            <a class="page-item pagination-next" href="#">
+                                                Next
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Additional Contact Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="Contactpersoninput">Contact Person Name</label>
+                                            <input type="text" class="form-control" id="ContactpersonNameinput" placeholder="EnterName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="Designationinput">Designation</label>
+                                            <input type="text" class="form-control" id="Designationinput" placeholder="Enter Designation">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="ConperTelnumberinput">Tel</label>
+                                            <input type="text" class="form-control" id="ConperTelnumberinput" placeholder="Enter Tel No. ">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="MobileNoinput">Mobile No</label>
+                                            <input type="text" class="form-control" id="MobileNoinput" placeholder="Enter Mobile No. ">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="ConperEmailIdinput">Email ID</label>
+                                            <input type="text" class="form-control" id="ConperEmailIdinput" placeholder="Enter Email ID ">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <div class="form-check notification-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="allow-sendsms-check01">
+                                                <label class="form-check-label" for="allow-sendsms-check01">Is Allow To Send SMS?</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <input type="text" id="hdnIDInput" hidden />
+                                            <div class="form-check notification-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="allow-sendemail-check01">
+                                                <label class="form-check-label" for="allow-sendemail-check01">Is Allow To Send Email?</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+
+
+
+                    </div>
+                    <!-- end tab pane -->
+                    </div>
+                    <!-- end tab content -->
+                </div>
+                <!-- end card body -->
+            </div>
+
+            
+            <!-- end card -->
+            <div class="text-end mb-3">
+                <div class="hstack gap-2 justify-content-end"> 
+                <button type="submit" id="btnUpdate" class="btn btn-success w-sm" onclick="fnOnUpdateCustomer()" fdprocessedid="vivlg9">Update</button>
+                <button type="button" class="btn btn-soft-success" onclick="fnOnCancelCustomer()" fdprocessedid="06yrki5">Cancel</button>
+                 <a href="/Masters/Customers" class="btn btn-soft-primary" id="addproduct-btn"> Back To Listing Page</a>
+                </div>
+
+            </div>
+        </div>
+        <!-- end col -->
+@* 
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Photo Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                                <img src="/Admin/dist/material/assets/images/users/user-dummy-img.jpg" style="height: 8.5rem !important;width: 7.5rem;" class=" avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
+                                <div class="avatar-xs p-0  profile-photo-edit">
+                                    <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                        <span class="avatar-title bg-light text-body shadow">
+                                            <i class="ri-camera-fill"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="creditlimitInput" class="form-label">Credit Limit</label>
+                                        <input type="number" id="creditlimitInput" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="paytermsInput" class="form-label">Payment Terms (In days)</label>
+                                        <input type="number" id="paytermsInput" class="form-control">
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="DefaultdiscountInput" class="form-label">Default discount</label>
+                                        <input type="number" id="DefaultdiscountInput" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="Pricelevelinput" class="form-label">Price Level</label>
+                                        <select class="form-select" id="Pricelevelinput" data-choices data-choices-search-true>
+                                            <option value="" selected>Select</option>
+                                            <option value="Wholesale">Wholesale</option>
+                                            <option value="Retail">Retail</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="monthlybudgetInput" class="form-label">Monthly Budget</label>
+                                        <input type="number" id="monthlybudgetInput" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Additional Contact Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="Contactpersoninput">Contact Person Name</label>
+                                <input type="text" class="form-control" id="ContactpersonNameinput" placeholder="EnterName">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="Designationinput">Designation</label>
+                                <input type="text" class="form-control" id="Designationinput" placeholder="Enter Designation">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="ConperTelnumberinput">Tel</label>
+                                <input type="text" class="form-control" id="ConperTelnumberinput" placeholder="Enter Tel No. ">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="MobileNoinput">Mobile No</label>
+                                <input type="text" class="form-control" id="MobileNoinput" placeholder="Enter Mobile No. ">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="ConperEmailIdinput">Email ID</label>
+                                <input type="text" class="form-control" id="ConperEmailIdinput" placeholder="Enter Email ID ">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <div class="form-check notification-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="allow-sendsms-check01">
+                                    <label class="form-check-label" for="allow-sendsms-check01">Is Allow To Send SMS?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                            <input type="text" id="hdnIDInput" hidden />
+                                <div class="form-check notification-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="allow-sendemail-check01">
+                                    <label class="form-check-label" for="allow-sendemail-check01">Is Allow To Send Email?</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+
+
+        </div> *@
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+<div class="modal fade" id="addAddress" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light p-3">
+                <h5 class="modal-title" id="addAddressLabel">Create Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+            </div>
+
+            <div class="modal-body" style="max-height: 500px;overflow-y: scroll;">
+                <div class="mb-3">
+                    <label for="addresCodeInput" class="form-label">Code <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="addresCodeInput" placeholder="Enter Code" required>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="addressNameInput" class="form-label">Name <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="addressNameInput" placeholder="Enter Name" required>
+                     
+                </div>
+                <div class="mb-3">
+                    <label for="addressNameArInput" class="form-label">Name Ar <span class="c_ff1100">*</span></label>
+                    <input type="text" id="addressNameArInput" class="form-control" placeholder="Enter Name Ar" required>
+                     
+                </div>
+                <div class="mb-3">
+                    <label for="shortaddressInput" class="form-label">Short Address <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="shortaddressInput" placeholder="Enter Address" required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="addressbuildingNoInput" class="form-label">Building No.<span class="c_ff1100">*</span></label>
+                    <input type="text" id="addressbuildingNoInput" class="form-control" placeholder="Enter Building No." required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="streetNameInput" class="form-label">Street Name <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="streetNameInput" placeholder="Enter Street Name" required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="secondaryNoInput" class="form-label">Secondary No.<span class="c_ff1100">*</span></label>
+                    <input type="text" id="secondaryNoInput" class="form-control" placeholder="Enter Secondary No." required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="addressCityInput" class="form-label">City<span class="c_ff1100">*</span></label>
+                    <input type="text" id="addressCityInput" class="form-control" placeholder="Enter City" required>
+
+                </div>
+                <div class="row gy-4 mb-3">
+                    <div class="col-md-6">
+                        <div>
+                            <label for="addressDistrictInput" class="form-label">District <span class="c_ff1100">*</span></label>
+                            <input type="text" class="form-control" id="addressDistrictInput" placeholder="Enter District" required>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label for="addressStateInput" class="form-label">State <span class="c_ff1100">*</span></label>
+                            <input type="text" class="form-control" id="addressStateInput" placeholder="Enter State" required>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="addressCountryInput" class="form-label">Country <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="addressCountryInput" placeholder="Enter Country" required>
+
+                </div>
+                <div class="row gy-4 mb-3">
+                    <div class="col-md-6">
+                        <div>
+                            <label for="addressPostalCodeInput" class="form-label">Postal Code <span class="c_ff1100">*</span></label>
+                            <input type="text" class="form-control" id="addressPostalCodeInput" placeholder="Enter Postal Code" required>
+                             
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label for="addressTelNoInput" class="form-label">Tel No. <span class="c_ff1100">*</span></label>
+                            <input type="text" class="form-control" id="addressTelNoInput" placeholder="Enter Tel No" required>
+                            
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="modal-footer">
+                <div class="hstack gap-2 justify-content-end">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" onclick="fnOnsaveCustAddress()" id="add-btn">Add</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addopening" tabindex="-1" aria-labelledby="addopeningLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light p-3">
+                <h5 class="modal-title" id="addopeningLabel">Create Opening Balance</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+            </div>
+
+            <div class="modal-body"> 
+                <div class="mb-3">
+                    <label for="DateInput" class="form-label">Date <span class="c_ff1100">*</span></label>
+                    <input type="text" id="DateInput" class="form-control" data-provider="flatpickr" data-altFormat="F j, Y">
+                </div>
+
+                <div class="mb-3">
+                    <label for="locationInput" class="form-label">Location <span class="c_ff1100">*</span></label>
+                    <select class="form-select" aria-label=".form-select-sm example" id="locationInput">
+                        <option selected>Please Select</option>
+                        <option value="Main Location">Main Location</option>
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="RefNoInput" class="form-label">Ref No. <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="RefNoInput" placeholder="Enter Ref No." required>
+                     
+                </div>
+                <div class="mb-3">
+                    <label for="VoucherNoInput" class="form-label">Voucher No. <span class="c_ff1100">*</span></label>
+                    <input type="text" class="form-control" id="VoucherNoInput" placeholder="Enter Voucher No." required>
+                     
+                </div>
+                <div class="row gy-4 mb-3"> 
+                    <div class="col-md-6">
+                        <div>
+                            <label for="TypeInput" class="form-label">Type <span class="c_ff1100">*</span></label>
+                            <select class="form-select" aria-label=".form-select-sm example" id="TypeInput" fdprocessedid="wfl94w">
+                                <option selected="">Please Select</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Cr">Cr</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label for="AmountValueInput" class="form-label">Amount <span class="c_ff1100">*</span></label>
+                            <input type="text" class="form-control" id="AmountValueInput" placeholder="0.00" required="" fdprocessedid="cqkggp">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="hstack gap-2 justify-content-end">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" onclick="fnOnsaveOpening()" id="add-btn">Add</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+     
+    <script>
+        var LogoFileName = "";
+        var CustomerId = 0;
+        $(document).ready(function () {
+
+            var CUSTID = @ViewBag.CustId;
+            var IsEdit = @ViewBag.IsEdit;
+            $("#hdnIDInput").val(CUSTID);
+           // $("#Addresstab").css("display","none");
+            
+            if (IsEdit) {
+                fnEditCustomer(CUSTID); 
+            }
+            else {
+                $("#AccountCodeinput").val("CUST" + CUSTID); 
+            }
+            GetOpeningBalanceDetails();
+            GetAddressDetails();
+        });
+        function GetOpeningBalanceDetails()
+        {
+            checkAll = document.getElementById("checkAll"),
+                perPage = (checkAll && (checkAll.onclick = function () {
+                    for (var e = document.querySelectorAll('.form-check-all input[type="checkbox"]'), t = document.querySelectorAll('.form-check-all input[type="checkbox"]:checked').length, a = 0; a < e.length; a++) e[a].checked = this.checked, e[a].checked ? e[a].closest("tr").classList.add("table-active") : e[a].closest("tr").classList.remove("table-active");
+                    document.getElementById("remove-actions").style.display = 0 < t ? "none" : "block"
+                }), 5),
+                editlist = !1,
+                options = {
+                    valueNames: ["id", "date", "location", "refNo", "voucherNo", "type", "dr", "cr"], //, "status"
+                    page: perPage,
+                    pagination: !0,
+                    plugins: [ListPagination({
+                        left: 2,
+                        right: 2
+                    })]
+                },
+                openbalanceList = new List("openbalanceList", options).on("updated", function (e) {
+                    0 == e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "block" : document.getElementsByClassName("noresult")[0].style.display = "none";
+                    var t = 1 == e.i,
+                        a = e.i > e.matchingItems.length - e.page;
+                    document.querySelector(".pagination-prev.disabled") && document.querySelector(".pagination-prev.disabled").classList.remove("disabled"), document.querySelector(".pagination-next.disabled") && document.querySelector(".pagination-next.disabled").classList.remove("disabled"), t && document.querySelector(".pagination-prev").classList.add("disabled"), a && document.querySelector(".pagination-next").classList.add("disabled"), e.matchingItems.length <= perPage ? document.querySelector(".pagination-wrap").style.display = "none" : document.querySelector(".pagination-wrap").style.display = "flex", e.matchingItems.length == perPage && document.querySelector(".pagination.listjs-pagination").firstElementChild.children[0].click(), 0 < e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "none" : document.getElementsByClassName("noresult")[0].style.display = "block"
+                });
+            const xhttp = new XMLHttpRequest;
+            xhttp.onload = function () {
+                var e = JSON.parse(this.responseText);
+                console.log("Response Data:", this.responseText);
+                datalist = e;
+                Array.from(e).forEach(function (e) {
+                    openbalanceList.add({
+                        id: e.id,
+                        date: getDate(e.date),
+                        location: e.location,
+                        refNo: e.refNo,
+                        voucherNo: e.voucherNo,
+                        type: e.type,
+                        dr: IsTypedr(e),
+                        cr: IsTypecr(e),
+                        action: '<ul class="list-inline hstack gap-2 mb-0">' +
+                            '<li class= "list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">' +
+                            '<a href="#" onclick="fnEditRecord(' + e.id + ')" class= "text-primary d-inline-block edit-item-btn">' +
+                            '<i class="ri-pencil-fill fs-16" > </i>' +
+                            '</a>' +
+                            '</li>' +
+                            '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">' +
+                            '<a class="text-danger d-inline-block remove-item-btn" onclick="fnDeleteRecordPopup(' + e.id + ')" href="#">' +
+                            '<i class="ri-delete-bin-5-fill fs-16"> </i>' +
+                            '</a>' +
+                            '</li>' +
+                            '</ul>',
+                    }),
+                        openbalanceList.sort("id", {
+                            order: "desc"
+                        })
+                }), openbalanceList.remove("id", 'VZ01');
+
+            }, xhttp.open("GET", "/api/CustomerOpenBalanceApi/"), xhttp.send();
+             
+        }
+         
+        function getDate(value)
+        {
+            return value.split("T")[0];
+        }
+
+        function IsTypedr(e) {
+            switch (e.type) {
+                case 'Dr':
+                    return e.amount;
+                case 'Cr':
+                    return '';
+            }
+        }
+
+        function IsTypecr(e) {
+            switch (e.type) {
+                case 'Cr':
+                    return e.amount;
+                case 'Dr':
+                    return '';
+            }
+        }
+         
+        function fnOnsaveOpening()
+        {
+            var Date = toTimestamp($("#DateInput").val());
+            var OpenBalance = {
+                CustomerId: $("#hdnIDInput").val(),
+                Date: Date,
+                Location: $("#locationInput").val(),
+                RefNo: $("#RefNoInput").val(),
+                VoucherNo: $("#VoucherNoInput").val(),
+                Type: $("#TypeInput").val(),
+                Amount: $("#AmountValueInput").val()
+            }
+
+            $.ajax({
+                url: "/api/CustomerOpenBalanceApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(OpenBalance),
+                beforeSend: function () { 
+                }, 
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        $('#addopening').modal('hide');
+                        $("#DateInput").val("");
+                        $("#locationInput").val("");
+                        $("#RefNoInput").val("");
+                        $("#VoucherNoInput").val("");
+                        $("#TypeInput").val("");
+                        $("#AmountValueInput").val("");
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+
+
+        }
+
+        function GetAddressDetails()
+        {
+            checkAll = document.getElementById("checkAll"),
+                perPage = (checkAll && (checkAll.onclick = function () {
+                    for (var e = document.querySelectorAll('.form-check-all input[type="checkbox"]'), t = document.querySelectorAll('.form-check-all input[type="checkbox"]:checked').length, a = 0; a < e.length; a++) e[a].checked = this.checked, e[a].checked ? e[a].closest("tr").classList.add("table-active") : e[a].closest("tr").classList.remove("table-active");
+                    document.getElementById("remove-actions").style.display = 0 < t ? "none" : "block"
+                }), 5),
+                editlist = !1,
+                options = {
+                    valueNames: ["id", "date", "location", "refNo", "voucherNo", "type", "dr", "cr"], //, "status"
+                    page: perPage,
+                    pagination: !0,
+                    plugins: [ListPagination({
+                        left: 2,
+                        right: 2
+                    })]
+                },
+                custAddressList = new List("custAddressList", options).on("updated", function (e) {
+                    0 == e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "block" : document.getElementsByClassName("noresult")[0].style.display = "none";
+                    var t = 1 == e.i,
+                        a = e.i > e.matchingItems.length - e.page;
+                    document.querySelector(".pagination-prev.disabled") && document.querySelector(".pagination-prev.disabled").classList.remove("disabled"), document.querySelector(".pagination-next.disabled") && document.querySelector(".pagination-next.disabled").classList.remove("disabled"), t && document.querySelector(".pagination-prev").classList.add("disabled"), a && document.querySelector(".pagination-next").classList.add("disabled"), e.matchingItems.length <= perPage ? document.querySelector(".pagination-wrap").style.display = "none" : document.querySelector(".pagination-wrap").style.display = "flex", e.matchingItems.length == perPage && document.querySelector(".pagination.listjs-pagination").firstElementChild.children[0].click(), 0 < e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "none" : document.getElementsByClassName("noresult")[0].style.display = "block"
+                });
+            const xhttp = new XMLHttpRequest;
+            xhttp.onload = function () {
+                var e = JSON.parse(this.responseText);
+                console.log("Response Data:", this.responseText);
+                datalist = e;
+                Array.from(e).forEach(function (e) {
+                    custAddressList.add({
+                        id: e.id,
+                        code: e.code,
+                        name: e.name,
+                        nameAr: e.nameAr,
+                        shortAddress: e.shortAddress,
+                        buildingNo: e.buildingNo,
+                        streetName: e.streetName,
+                        secondaryNo: e.secondaryNo,
+                        city: e.city,
+                        district: e.district,
+                        state: e.state,
+                        postalCode: e.postalCode,
+                        country: e.country,
+                        telNo: e.telNo,
+                        action: '<ul class="list-inline hstack gap-2 mb-0">' +
+                            '<li class= "list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">' +
+                            '<a href="#" onclick="fnEditRecord(' + e.id + ')" class= "text-primary d-inline-block edit-item-btn">' +
+                            '<i class="ri-pencil-fill fs-16" > </i>' +
+                            '</a>' +
+                            '</li>' +
+                            '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">' +
+                            '<a class="text-danger d-inline-block remove-item-btn" onclick="fnDeleteRecordPopup(' + e.id + ')" href="#">' +
+                            '<i class="ri-delete-bin-5-fill fs-16"> </i>' +
+                            '</a>' +
+                            '</li>' +
+                            '</ul>',
+                    }),
+                        custAddressList.sort("id", {
+                            order: "desc"
+                        })
+                }), custAddressList.remove("id", 'VZA01');
+
+            }, xhttp.open("GET", "/api/CustomerAddressApi/"), xhttp.send();
+
+
+        }
+        
+
+        function fnOnsaveCustAddress() {
+
+            var CustAddress = {
+                CustomerId: $("#hdnIDInput").val(),
+                Code : $("#addresCodeInput").val(),
+                Name: $("#addressNameInput").val(),
+                NameAr: $("#addressNameArInput").val(),
+                ShortAddress : $("#shortaddressInput").val(),
+                BuildingNo: $("#addressbuildingNoInput").val(),
+                StreetName: $("#streetNameInput").val(),
+                SecondaryNo: $("#secondaryNoInput").val(),
+                City: $("#addressCityInput").val(),
+                District: $("#addressDistrictInput").val(),
+                State: $("#addressStateInput").val(),
+                Country: $("#addressCountryInput").val(),
+                PostalCode: $("#addressPostalCodeInput").val(),
+                TelNo: $("#addressTelNoInput").val(), 
+            }
+
+            $.ajax({
+                url: "/api/CustomerAddressApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(CustAddress),
+                beforeSend: function () {
+                },
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        $('#addopening').modal('hide');
+                        $("#DateInput").val("");
+                        $("#locationInput").val("");
+                        $("#RefNoInput").val("");
+                        $("#VoucherNoInput").val("");
+                        $("#TypeInput").val("");
+                        $("#AmountValueInput").val("");
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+             
+        }
+         
+        function fnEditCustomer(Id) {
+            // $("#hdnIDInput").val(Id);
+            $.ajax({
+                url: '/api/CustomerApi/' + Id,
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    //$('#divLoader').show();
+                },
+                success: function (data) {
+
+                    console.log(data); 
+                    $("#AccountCodeinput").val(data.accountCode);
+                    $("#CustomerCodeinput").val(data.customerCode);
+                    $("#CustomerNameinput").val(data.customerName);
+                    $("#Typeinput").val(data.type);
+                    $("#Customergroupinput").val(data.customergroup);
+                    $("#Accounttypeinput").val(data.accounttype);
+                    $("#Currencyinput").val(data.currency);
+                    $("#Allowcostcentreinput").val(data.allowcostcentre);
+                    $("#Tininput").val(data.tin);
+                    $("#VatNumberinput").val(data.vatNumber);
+
+                        //document.getElementById("Iscomposition-check01").checked,
+
+                    $("#Aadharnumberinput").val(data.aadharnumber);
+                    $("#Addressinput").val(data.address);
+                    $("#addressline2input").val(data.addressline2);
+                    $("#addressline3input").val(data.addressline3);
+                    $("#Locationinput").val(data.location);
+                    $("#Stateinput").val(data.state);
+                    $("#Countryinput").val(data.country);
+                    $("#Postalcodeinput").val(data.postalcode);
+                    $("#Telnumberinput").val(data.telnumber);
+                    $("#Faxnumberinput").val(data.faxnumber);
+                    $("#Emailidinput").val(data.emailid);
+                    $("#Websiteinput").val(data.website);
+
+                        // UploadImageName: LogoFileName,
+                    $("#creditlimitInput").val(data.creditlimit);
+                    $("#paytermsInput").val(data.payterms);
+                    $("#DefaultdiscountInput").val(data.defaultdiscount);
+                    $("#Pricelevelinput").val(data.pricelevel);
+                    $("#monthlybudgetInput").val(data.monthlybudget);
+
+                    $("#ContactpersonNameinput").val(data.contactpersonName);
+                    $("#Designationinput").val(data.designation);
+                    $("#ConperTelnumberinput").val(data.conperTelnumber);
+                    $("#MobileNoinput").val(data.mobileNo);
+                    $("#ConperEmailIdinput").val(data.conperEmailId);
+
+                    //document.getElementById("allow-sendsms-check01").checked;
+                    //document.getElementById("allow-sendemail-check01").checked;
+
+                },
+                complete: function (e) {
+                },
+                error: function (e) {
+                    //$('body').removeClass('modal-open');
+                    //$('.modal-backdrop').remove();
+                    console.log(e.responseText);
+                }
+            });
+
+
+        }
+
+        function fnOnUpdateCustomer() {
+
+            var customer = {
+
+                Id: $("#hdnIDInput").val(),
+                AccountCode: $("#AccountCodeinput").val(),
+                CustomerCode: $("#CustomerCodeinput").val(),
+                CustomerName: $("#CustomerNameinput").val(),
+                Type: $("#Typeinput").val(),
+                Customergroup: $("#Customergroupinput").val(),
+                Accounttype: $("#Accounttypeinput").val(),
+                Currency: $("#Currencyinput").val(),
+                Allowcostcentre: $("#Allowcostcentreinput").val(),
+                Tin: $("#Tininput").val(),
+                VatNumber: $("#VatNumberinput").val(),
+
+                Iscomposition: document.getElementById("Iscomposition-check01").checked,
+
+                Aadharnumber: $("#Aadharnumberinput").val(),
+                Address: $("#Addressinput").val(),
+                addressline2: $("#addressline2input").val(),
+                addressline3: $("#addressline3input").val(),
+                Location: $("#Locationinput").val(),
+                State: $("#Stateinput").val(),
+                Country: $("#Countryinput").val(),
+                Postalcode: $("#Postalcodeinput").val(),
+                Telnumber: $("#Telnumberinput").val(),
+                Faxnumber: $("#Faxnumberinput").val(),
+                Emailid: $("#Emailidinput").val(),
+                Website: $("#Websiteinput").val(),
+
+                UploadImageName: LogoFileName,
+                creditlimit: $("#creditlimitInput").val(),
+                payterms: $("#paytermsInput").val(),
+                Defaultdiscount: $("#DefaultdiscountInput").val(),
+                Pricelevel: $("#Pricelevelinput").val(),
+                monthlybudget: $("#monthlybudgetInput").val(),
+
+                ContactpersonName: $("#ContactpersonNameinput").val(),
+                Designation: $("#Designationinput").val(),
+                ConperTelnumber: $("#ConperTelnumberinput").val(),
+                MobileNo: $("#MobileNoinput").val(),
+                ConperEmailId: $("#ConperEmailIdinput").val(),
+
+                Allowsendsms: document.getElementById("allow-sendsms-check01").checked,
+                Allowsendemail: document.getElementById("allow-sendemail-check01").checked,
+            }
+            $.ajax({
+                url: "/api/CustomerApi",
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(customer),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        $("#Addresstab").css("display", "block");
+                        // $('#addGroup').modal('hide');
+                        // $('#edit-btn').hide();
+                        // $('#add-btn').show();
+                        // $('#exampleModalLabel').text("Create Account Group");
+
+                        // $("#GroupnameInput").val("");
+                        // $("#GrouptypeInput").val("");
+                        // $("#iddivundergroup").hide();
+                        // $("#UndergroupInput").val("");
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    $('.error').show();
+                }
+            });
+        }
+
+        function fnOnCancelCustomer() {
+            location.href = '/Masters/Customers';
+        }
+
+        function toTimestamp(strDate) {
+            var datum = new Date(strDate).toLocaleDateString();//Date.parse(strDate);
+            if (datum == 'Invalid Date') {
+                datum = null;
+            }
+            return datum;// datum/1000;
+        }
+    </script>
+
+
+
+}

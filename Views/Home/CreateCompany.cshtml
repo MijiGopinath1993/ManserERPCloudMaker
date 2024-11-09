@@ -1,0 +1,737 @@
+﻿@{
+    ViewBag.Title = "Company";
+    ViewBag.pTitle = "Company Management";
+    ViewBag.pageTitle = "Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+    <div class="row">
+        <div class="col-lg-8">
+           
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Basic Details</h5>
+                </div>
+                <!-- end card header -->
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Companynameinput">Company Name</label>
+                                        <input type="text" class="form-control" id="Companynameinput" placeholder="Enter Company name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Mailingnameinput">Mailing Name</label>
+                                        <input type="text" class="form-control" id="Mailingnameinput" placeholder="Enter Mailing Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="licensenoinput">License No.</label>
+                                        <input type="text" class="form-control" id="licensenoinput" placeholder="Enter License No.">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="gstnoinput">GST No.</label>
+                                        <input type="text" class="form-control" id="gstnoinput" placeholder="Enter GST No.">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="vatnoinput">VAT No.</label>
+                                        <input type="text" class="form-control" id="vatnoinput" placeholder="Enter VAT No.">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address1input">Address Line1</label>
+                                        <textarea class="form-control" id="address1input" placeholder="" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address2input">Address Line2</label>
+                                        <textarea class="form-control" id="address2input" placeholder="" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="stateinput">State</label>
+                                        <input type="text" class="form-control" id="stateinput" placeholder="Enter State">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="countryinput">Country</label>
+                                        <input type="text" class="form-control" id="countryinput" placeholder="Enter Country">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="pincodeinput">PinCode</label>
+                                        <input type="text" class="form-control" id="pincodeinput" placeholder="Enter Pincode ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="v">Telephone No.</label>
+                                        <input type="text" class="form-control" id="TelNoinput" placeholder="Enter Telephone No.">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="FaxNoinput">Fax No.</label>
+                                        <input type="text" class="form-control" id="FaxNoinput" placeholder="Enter Fax No.">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="EmailIdinput">Email ID </label>
+                                        <input type="text" class="form-control" id="EmailIdinput" placeholder="Enter Email id ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="BaseCurrencyinput">Base Currency  (Cant alter later)* </label>
+                                        <select class="form-select" id="BaseCurrencyinput" data-choices data-choices-search-true>
+                                            <option value="0" selected>Select</option>
+                                            <option value="AFN">AFN</option>
+                                            <option value="ALL">ALL</option>
+                                            <option value="SA">SA</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Taxtypeinput">Tax Type</label>
+                                        <select class="form-select" id="Taxtypeinput" data-choices data-choices-search-false>
+                                            <option value="0" selected>Select</option>
+                                            <option value="VAT">VAT</option>
+                                            <option value="GST">GST</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Currencysymbolinput">Currency Symbol</label>
+                                        <input type="text" class="form-control" id="Currencysymbolinput" placeholder="Enter Currency Symbol">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Decimalsymbolinput">Decimal Symbol</label>
+                                        <input type="text" class="form-control" id="Decimalsymbolinput" placeholder="Enter Decimal Symbol">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-2">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="DecialPlaceinput">Decimal Places</label>
+                                        <select class="form-select" id="DecialPlaceinput" data-choices data-choices-search-false>
+                                            <option value="0" selected>Select</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <div class="form-check notification-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="all-Itemsizecolor-check01">
+                                            <label class="form-check-label" for="all-Itemsizecolor-check01">Is items with Size/Color?</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                            </div>
+                            <!-- end row -->
+                        </div>
+                        <!-- end tab-pane -->
+                         
+                        <!-- end tab pane -->
+                    </div>
+                    <!-- end tab content -->
+                </div>
+                <!-- end card body -->
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Bank Details</h5>
+                </div>
+                <!-- end card body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="CompBanknameinput">Bank Name</label>
+                                <input type="text" class="form-control" id="CompBanknameinput" placeholder="Enter Bank name">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="CompAccNoinput">Accout No.</label>
+                                <input type="text" class="form-control" id="CompAccNoinput" placeholder="Enter Account No.">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="CompBranchinput">Branch</label>
+                                <input type="text" class="form-control" id="CompBranchinput" placeholder="Enter Branch ">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+            <!-- end card -->
+
+            <!-- end card -->
+            <div class="text-end mb-3">
+                <div class="hstack gap-2 justify-content-end">
+                <input type="text" id="Idinput"  hidden/>
+                    <button type="submit" id="Submitbtn" class="btn btn-success w-sm" onclick="fnOnsaveCompany()" fdprocessedid="vivlg9">Submit</button>
+                    <button type="submit" style="display:none" id="Updatebtn" class="btn btn-success w-sm" onclick="fnOnUpdateCompany()" fdprocessedid="vivlg9">Update</button>
+                    <button type="button" class="btn btn-soft-success" fdprocessedid="06yrki5">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- end col -->
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Company Logo</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="profile-user position-relative d-inline-block mx-auto  mb-2">
+                            <img id="profile-img-file-image" src="/Admin/dist/material/assets/images/users/multi-user.jpg" style="height: 8.5rem !important;width: 7.5rem;" class=" avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
+                                <div class="avatar-xs p-0  profile-photo-edit">
+                                    <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                        <span class="avatar-title bg-light text-body shadow">
+                                            <i class="ri-image-fill"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <h5 class="fs-16 mb-1">Company Logo</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label for="DateFormatinput" class="form-label">Date Format</label>
+                                <select class="form-select" id="DateFormatinput" data-choices data-choices-search-false>
+                                    <option value="0" selected>Select</option>
+                                    <option value="1">dd/MM/yyyy</option>
+                                    <option value="2">dd/MMM/yyyy</option>
+                                    <option value="3">dddd-MMMM-yyyy</option>
+                                    <option value="4">dddd.MMMM d.yyyy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="AccperiodfromInput">Accounting Period : From</label>
+                                            <input type="text" id="AccperiodfromInput" class="form-control" data-provider="flatpickr" data-date-format="d.m.y" data-enable-time>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="AccperiodtoInput">To</label>
+                                            <input type="text" id="AccperiodtoInput" class="form-control" data-provider="flatpickr" data-date-format="d.m.y" data-enable-time>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="BookPeriodfromInput">Book Period : From</label>
+                                            <input type="text" id="BookPeriodfromInput" class="form-control" data-provider="flatpickr" data-date-format="d.m.y" data-enable-time>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="BookPeriodtoInput">To</label>
+                                            <input type="text" id="BookPeriodtoInput" class="form-control" data-provider="flatpickr" data-date-format="d.m.y" data-enable-time>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Security Details</h5>
+                </div>
+                <div class="card-body"> 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="adminUsernameinput">Admin User Name</label>
+                                <input type="text" class="form-control" id="adminUsernameinput" placeholder="Enter Admin User Name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="Adminpasswordinput">Admin Password</label>
+                                <input type="text" class="form-control" id="Adminpasswordinput" placeholder="Enter password">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="confpasswordinput">Re-enter Password</label>
+                                <input type="text" class="form-control" id="confpasswordinput" placeholder="Enter Re-enter Password ">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="adminEmailIdinput">Admin Email ID</label>
+                                <input type="text" class="form-control" id="adminEmailIdinput" placeholder="Enter Email ID ">
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="mb-3">
+                                <label class="form-label" for="Imagefolderinput">Shared Image Folder</label>
+                                <input type="text" class="form-control" disabled id="Imagefolderinput" placeholder="Enter Folder path ">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-3">
+                                <div class="flex-shrink-0">
+                                    <input class="form-control d-none" type="file" id="formFile">
+                                    <label for="formFile" class="btn btn-danger"><i class="ri-upload-2-fill me-1 align-bottom"></i>     Browse</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        <div class="card">
+            <img class="img" style="width:100%; height:auto" id="ProcessImage" hidden="hidden" />
+        </div>
+        <div class="card">
+            <textarea id="textAreaProcessImage" rows="30" cols="50" hidden="hidden"></textarea>
+        </div>
+             
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row --> 
+    
+
+
+@section scripts{
+
+
+    <script>
+        
+
+        var LogoFileName = "";
+        $(document).ready(function () {
+
+            fngetCompanydetails();
+             
+        });
+
+        const inputImage = document.getElementById("profile-img-file-input");
+        const showImage = document.getElementById("profile-img-file-image");
+        const ProcessImage = document.getElementById("ProcessImage");
+        const textAreaImage = document.getElementById("textAreaProcessImage");
+        inputImage.addEventListener("change", (e) => {
+            uploadImage(e);
+        });
+        const uploadImage = async (event) => {
+            const file = event.target.files[0];
+            const base64 = await convertBase64(file);
+            ProcessImage.src = base64;
+            textAreaImage.innerText = base64;
+        };
+        const convertBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.onload = () => {
+                    resolve(fileReader.result);
+                };
+                fileReader.onerror = (error) => {
+                    reject(error);
+                };
+            });
+        };
+
+        function fngetCompanydetails() {
+
+            $.ajax({
+                url: '/api/CompanyApi/',
+                beforeSend: function () {
+                    // $('#loader').show();
+                    // $('#loaderTop').show();
+                },
+                success: function (data) {
+
+                    if (data.length > 0) {
+                        //logoFileName
+
+                        $("#Idinput").val(data[0].id);
+                        $("#Companynameinput").val(data[0].companyname);
+                        $("#Mailingnameinput").val(data[0].mailingName);
+                        $("#licensenoinput").val(data[0].licenseNo);
+                        $("#gstnoinput").val(data[0].gstNo);
+                        $("#vatnoinput").val(data[0].vatNo);
+                        $("#address1input").val(data[0].address1);
+                        $("#address2input").val(data[0].address2);
+                        $("#stateinput").val(data[0].state);
+                        $("#countryinput").val(data[0].country);
+                        $("#pincodeinput").val(data[0].pincode);
+                        $("#TelNoinput").val(data[0].telNo);
+                        $("#FaxNoinput").val(data[0].faxNo);
+                        $("#EmailIdinput").val(data[0].emailid);
+                        $("#BaseCurrencyinput").val(data[0].baseCurrency);
+                        $("#Currencysymbolinput").val(data[0].currencysymbol);
+                        $("#Decimalsymbolinput").val(data[0].decimalsymbol);
+                        $("#DecialPlaceinput").val(data[0].decialPlace);
+                        //document.getElementById("all-Itemsizecolor-check01").checked;
+
+                        $("#CompBanknameinput").val(data[0].compBankname);
+                        $("#CompAccNoinput").val(data[0].compAccNo);
+                        $("#CompBranchinput").val(data[0].compBranch);
+                        ProcessImage.src = data[0].logoImageFile;
+                        inputImage.src = "";
+                        inputImage.src = data[0].logoImageFile;
+                        showImage.src = data[0].logoImageFile;
+                        //LogoFileName,
+                        $("#DateFormatinput").val(data[0].dateFormat);
+                        $("#AccperiodfromInput").val(data[0].accperiodfrom);
+                        $("#AccperiodtoInput").val(data[0].accperiodto);
+                        $("#BookPeriodfromInput").val(data[0].bookPeriodfrom);
+                        $("#BookPeriodtoInput").val(data[0].bookPeriodto);
+
+                        $("#adminUsernameinput").val(data[0].adminUsername);
+                        $("#Adminpasswordinput").val(data[0].adminpassword);
+                        $("#confpasswordinput").val(data[0].confpassword);
+                        $("#adminEmailIdinput").val(data[0].adminEmailId);
+                        $("#Imagefolderinput").val(data[0].imagefolderpath);
+
+                        document.getElementById("Submitbtn").style.display = "none";
+                        document.getElementById("Updatebtn").style.display = "block";
+                    }
+                    else {
+                        document.getElementById("Submitbtn").style.display = "block";
+                        document.getElementById("Updatebtn").style.display = "none";
+                    }
+                    
+                    // $('#loader').hide();
+                    // $('#loaderTop').hide();
+                },
+                error: function (e) {
+                    // alert(e.responseText);
+                    // $('#loader').hide();
+                    console.log(e.responseText);
+                },
+                complete: function () {
+                    // $('#loader').hide();
+                }
+            });
+
+        
+        }
+
+        function fnOnsaveCompany() {
+             
+            var Accperiodfrom = $("#AccperiodfromInput").val();
+            if (Accperiodfrom == "" || Accperiodfrom == '' || Accperiodfrom == undefined) { 
+            
+                Accperiodfrom = null;
+            }
+
+            var Accperiodto = $("#AccperiodtoInput").val();
+            if (Accperiodto == "" || Accperiodto == '' || Accperiodto == undefined) {
+
+                Accperiodto = null;
+            }
+            var BookPeriodfrom = $("#BookPeriodfromInput").val();
+            if (BookPeriodfrom == "" || BookPeriodfrom == '' || BookPeriodfrom == undefined) {
+
+                BookPeriodfrom = null;
+            }
+            var BookPeriodto = $("#BookPeriodtoInput").val();
+            if (BookPeriodto == "" || BookPeriodto == '' || BookPeriodto == undefined) {
+
+                BookPeriodto = null;
+            }
+
+            var Companydetails = {
+                
+                Companyname: $("#Companynameinput").val(),
+                Mailingname: $("#Mailingnameinput").val(),
+                LicenseNo: $("#licensenoinput").val(),
+                GSTNo: $("#gstnoinput").val(),
+                VATNo: $("#vatnoinput").val(),
+                Address1: $("#address1input").val(),
+                Address2: $("#address2input").val(),
+                State: $("#stateinput").val(),
+                Country: $("#countryinput").val(),
+                Pincode: $("#pincodeinput").val(),
+                TelNo: $("#TelNoinput").val(),
+                FaxNo: $("#FaxNoinput").val(),
+                Emailid: $("#EmailIdinput").val(),
+                BaseCurrency: $("#BaseCurrencyinput").val(),
+                Currencysymbol: $("#Currencysymbolinput").val(),
+                Decimalsymbol: $("#Decimalsymbolinput").val(),
+                DecialPlace: $("#DecialPlaceinput").val(),
+                ItemSizeColor: document.getElementById("all-Itemsizecolor-check01").checked,
+
+                CompBankname: $("#CompBanknameinput").val(),
+                CompAccNo: $("#CompAccNoinput").val(),
+                CompBranch: $("#CompBranchinput").val(),
+
+                LogoImageFile: $('textarea#textAreaProcessImage').val(),
+                DateFormat: $("#DateFormatinput").val(),
+                Accperiodfrom: Accperiodfrom,
+                Accperiodto: Accperiodto,
+                BookPeriodfrom: BookPeriodfrom,
+                BookPeriodto: BookPeriodto,
+                // Accperiodfrom: null,
+                // Accperiodto: null,
+                // BookPeriodfrom: null,
+                // BookPeriodto: null,
+
+                AdminUsername: $("#adminUsernameinput").val(),
+                Adminpassword: $("#Adminpasswordinput").val(),
+                Confpassword: $("#confpasswordinput").val(),
+                AdminEmailId: $("#adminEmailIdinput").val(),
+                Imagefolderpath: $("#Imagefolderinput").val(),
+
+            }
+
+            $.ajax({
+                url: "/api/CompanyApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(Companydetails),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Company Creation',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                       // setTimeout(location.reload(true), 100000);
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Company Creation',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+
+
+            // }
+
+        }
+                
+        function fnOnUpdateCompany() {
+
+            var Accperiodfrom = $("#AccperiodfromInput").val();
+            if (Accperiodfrom == "" || Accperiodfrom == '' || Accperiodfrom == undefined) {
+
+                Accperiodfrom = null;
+            }
+
+            var Accperiodto = $("#AccperiodtoInput").val();
+            if (Accperiodto == "" || Accperiodto == '' || Accperiodto == undefined) {
+
+                Accperiodto = null;
+            }
+            var BookPeriodfrom = $("#BookPeriodfromInput").val();
+            if (BookPeriodfrom == "" || BookPeriodfrom == '' || BookPeriodfrom == undefined) {
+
+                BookPeriodfrom = null;
+            }
+            var BookPeriodto = $("#BookPeriodtoInput").val();
+            if (BookPeriodto == "" || BookPeriodto == '' || BookPeriodto == undefined) {
+
+                BookPeriodto = null;
+            }
+
+            var Companydetails = {
+                Id: $("#Idinput").val(),
+                Companyname: $("#Companynameinput").val(),
+                Mailingname: $("#Mailingnameinput").val(),
+                LicenseNo: $("#licensenoinput").val(),
+                GSTNo: $("#gstnoinput").val(),
+                VATNo: $("#vatnoinput").val(),
+                Address1: $("#address1input").val(),
+                Address2: $("#address2input").val(),
+                State: $("#stateinput").val(),
+                Country: $("#countryinput").val(),
+                Pincode: $("#pincodeinput").val(),
+                TelNo: $("#TelNoinput").val(),
+                FaxNo: $("#FaxNoinput").val(),
+                Emailid: $("#EmailIdinput").val(),
+                BaseCurrency: $("#BaseCurrencyinput").val(),
+                Currencysymbol: $("#Currencysymbolinput").val(),
+                Decimalsymbol: $("#Decimalsymbolinput").val(),
+                DecialPlace: $("#DecialPlaceinput").val(),
+                ItemSizeColor: document.getElementById("all-Itemsizecolor-check01").checked,
+
+                CompBankname: $("#CompBanknameinput").val(),
+                CompAccNo: $("#CompAccNoinput").val(),
+                CompBranch: $("#CompBranchinput").val(),
+
+                LogoImageFile: $('textarea#textAreaProcessImage').val(),
+                DateFormat: $("#DateFormatinput").val(),
+                Accperiodfrom: Accperiodfrom,
+                Accperiodto: Accperiodto,
+                BookPeriodfrom: BookPeriodfrom,
+                BookPeriodto: BookPeriodto, 
+
+                AdminUsername: $("#adminUsernameinput").val(),
+                Adminpassword: $("#Adminpasswordinput").val(),
+                Confpassword: $("#confpasswordinput").val(),
+                AdminEmailId: $("#adminEmailIdinput").val(),
+                Imagefolderpath: $("#Imagefolderinput").val(),
+
+            }
+
+            $.ajax({
+                url: "/api/CompanyApi",
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(Companydetails),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Company Updation',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        setTimeout(location.reload(true), 100000);
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Company Creation',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+
+
+            // }
+
+        }
+        
+    </script>
+
+
+
+}

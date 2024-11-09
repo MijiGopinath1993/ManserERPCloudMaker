@@ -1,0 +1,697 @@
+﻿@{
+    ViewBag.Title = "Stock Items";
+    ViewBag.pTitle = "Stock Items Management";
+    ViewBag.pageTitle = "Stock Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+<div class="row">
+    <div class="col-lg-8">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Basic Details</h5>
+            </div>
+            <!-- end card header -->
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ItemTypeinput">Item Type</label>
+                                    <select class="form-select" id="ItemTypeinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="Stock Item">Stock Item</option>
+                                        <option value="Non-Stock Item">Non-Stock Item</option>
+                                        <option value="Service">Service</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="BarCodeinput">BarCode</label>
+                                    <input type="text" class="form-control" id="BarCodeinput" placeholder="Enter BarCode">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="HSNinput">HSN</label>
+                                    <input type="text" class="form-control" id="HSNinput" placeholder="Enter HSN">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ItemCodeinput">Item Code**</label>
+                                    <input type="text" class="form-control" id="ItemCodeinput" placeholder="Enter Item Code">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ItemNameinput">Item Name*</label>
+                                    <input type="text" class="form-control" id="ItemNameinput" placeholder="Enter Item Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ItemName2input">Item Name2*</label>
+                                    <input type="text" class="form-control" id="ItemName2input" placeholder="Enter Item Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="Stockgroupinput">Stock Group</label>
+                                    <select class="form-select" id="Stockgroupinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="Primary">Primary*</option>
+                                    </select>
+                                </div> 
+                            </div> 
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="Currencyinput">Currency</label>
+                                    <select class="form-select" id="Currencyinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="SAR">SAR</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="Packinginput">Packing</label>
+                                    <select class="form-select" id="Packinginput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div> 
+                              <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="MRPinput">MRP</label>
+                                    <input type="text" class="form-control" id="MRPinput" placeholder="" value="0">
+                                </div>
+                            </div>
+                              <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="SalePriceinput">Sale Price</label>
+                                    <input type="text" class="form-control" id="SalePriceinput" placeholder="" value="0">
+                                </div> 
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="WholeSalePriceinput">WholeSale Price</label>
+                                    <input type="text" class="form-control" id="WholeSalePriceinput" placeholder="" value="0">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="Vatpercentageinput">VAT %</label>
+                                    <select class="form-select" id="Vatpercentageinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                        <option value="0">0</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="withvat1input">With VAT</label>
+                                    <input type="text" class="form-control" id="withvat1input" placeholder="" value="0.00">
+                                    <label class="form-label" for="withvat2input"> </label>
+                                    <input type="text" class="form-control" id="withvat2input" placeholder="" value="0.00">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end tab-pane -->
+                    <!-- end tab pane -->
+                </div>
+                <!-- end tab content -->
+            </div>
+            <!-- end card body -->
+        </div>
+         
+        <!-- end card -->
+      
+    </div>
+    <!-- end col -->
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                @* <h5 class="card-title mb-0">Photo Details</h5> *@
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="WeightInput" class="form-label">Weight</label>
+                                    <input type="number" id="WeightInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="SalesmanInput" class="form-label">Salesman</label>
+                                    <select class="form-select" id="SalesmanInput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="SupplierInput" class="form-label">Supplier</label>
+                                    <select class="form-select" id="SupplierInput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option> 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="Companyinput" class="form-label">Company/Made</label>
+                                    <select class="form-select" id="Companyinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option> 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="DescriptionInput" class="form-label">Description</label>
+                                    <textarea class="form-control" rows="2" id="DescriptionInput"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+         
+    </div>
+    <!-- end col -->
+
+    @* <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Packing/Units</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="Units">Units</label> 
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="MainUnitinput">Main Unit</label>
+                            <select class="form-select" id="Vatpercentageinput" data-choices data-choices-search-true>
+                                <option value="" selected>Select</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Box">Box</option>
+                                <option value="BTL">BTL</option>
+                                <option value="CTN">CTN</option>
+                                <option value="Kgs">Kgs</option>
+                                <option value="lts">lts</option>
+                                <option value="mts">mts</option>
+                                <option value="NOS">NOS</option>
+                                <option value="pcs">pcs</option>
+                                <option value="SHEET">SHEET</option>
+                                <option value="STRIP">STRIP</option>
+                                <option value="TAB">TAB</option>
+                            </select>
+                            =
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="Value1input"></label>
+                            <input type="text" class="form-control" id="Value1input" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="SubUnit1input">Sub Unit 1</label>
+                            <select class="form-select" id="SubUnit1input" data-choices data-choices-search-true>
+                                <option value="" selected>Select</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Box">Box</option>
+                                <option value="BTL">BTL</option>
+                                <option value="CTN">CTN</option>
+                                <option value="Kgs">Kgs</option>
+                                <option value="lts">lts</option>
+                                <option value="mts">mts</option>
+                                <option value="NOS">NOS</option>
+                                <option value="pcs">pcs</option>
+                                <option value="SHEET">SHEET</option>
+                                <option value="STRIP">STRIP</option>
+                                <option value="TAB">TAB</option>
+                            </select>
+                            =
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="Value2input"></label>
+                            <input type="text" class="form-control" id="Value2input" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="mb-3">
+                            <label class="form-label" for="SubUnit2input">Sub Unit 2</label>
+                            <select class="form-select" id="SubUnit2input" data-choices data-choices-search-true>
+                                <option value="" selected>Select</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Box">Box</option>
+                                <option value="BTL">BTL</option>
+                                <option value="CTN">CTN</option>
+                                <option value="Kgs">Kgs</option>
+                                <option value="lts">lts</option>
+                                <option value="mts">mts</option>
+                                <option value="NOS">NOS</option>
+                                <option value="pcs">pcs</option>
+                                <option value="SHEET">SHEET</option>
+                                <option value="STRIP">STRIP</option>
+                                <option value="TAB">TAB</option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+       
+    </div>
+ *@
+   @*  <div class="col-lg-4">
+        <div class="card">
+           
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="WeightInput" class="form-label">Weight</label>
+                                    <input type="number" id="WeightInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="SalesmanInput" class="form-label">Salesman</label>
+                                    <select class="form-select" id="SalesmanInput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="SupplierInput" class="form-label">Supplier</label>
+                                    <select class="form-select" id="SupplierInput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="Companyinput" class="form-label">Company/Made</label>
+                                    <select class="form-select" id="Companyinput" data-choices data-choices-search-true>
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="DescriptionInput" class="form-label">Description</label>
+                                    <textarea class="form-control" rows="2" id="DescriptionInput"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+
+    </div> *@
+    <div class="text-end mb-3">
+        <div class="hstack gap-2 justify-content-end">
+            <button type="submit" id="btnSave" class="btn btn-success w-sm" onclick="fnOnsavepdtItems()" fdprocessedid="vivlg9">Submit</button>
+            <button type="submit" id="btnUpdate" class="btn btn-success w-sm" onclick="fnOnUpdatepdtItems()" fdprocessedid="vivlg9">Update</button>
+            <button type="button" class="btn btn-soft-success" onclick="fnOnCancelCustomer()" fdprocessedid="06yrki5">Cancel</button>
+            <a href="/Products/ItemMaster" class="btn btn-soft-primary" id="addproduct-btn"> Back To Listing Page</a>
+        </div>
+
+    </div>
+</div>
+<!-- end row -->
+@section scripts{
+
+
+    <script>
+        var LogoFileName = "";
+
+        $(document).ready(function () {
+
+            var Id = @ViewBag.Id;
+            var IsEdit = @ViewBag.IsEdit;
+            $("#hdnIDInput").val(Id);
+
+            // Get file input element
+            let fileInput = document.getElementById('profile-img-file-input');
+            fileInput.addEventListener('change', function (event) {
+                // Get file name
+                let fileName = fileInput.files[0].name;
+                LogoFileName = fileName;
+            });
+            if (IsEdit) {
+                fnEditPdtItems(Id);
+                $("#btnUpdate").show();
+                $("#btnSave").hide();
+            }
+            else { 
+                $("#btnUpdate").hide();
+                $("#btnSave").show();
+            }
+        });
+
+        function fnOnsavepdtItems() {
+
+            var Items = {
+                AccountCode: $("#AccountCodeinput").val(),
+                CustomerCode: $("#CustomerCodeinput").val(),
+                CustomerName: $("#CustomerNameinput").val(),
+                Type: $("#Typeinput").val(),
+                Customergroup: $("#Customergroupinput").val(),
+                Accounttype: $("#Accounttypeinput").val(),
+                Currency: $("#Currencyinput").val(),
+                Allowcostcentre: $("#Allowcostcentreinput").val(),
+                Tin: $("#Tininput").val(),
+                VatNumber: $("#VatNumberinput").val(),
+
+                Iscomposition: document.getElementById("Iscomposition-check01").checked,
+
+                Aadharnumber: $("#Aadharnumberinput").val(),
+                Address: $("#Addressinput").val(),
+                addressline2: $("#addressline2input").val(),
+                addressline3: $("#addressline3input").val(),
+                Location: $("#Locationinput").val(),
+                State: $("#Stateinput").val(),
+                Country: $("#Countryinput").val(),
+                Postalcode: $("#Postalcodeinput").val(),
+                Telnumber: $("#Telnumberinput").val(),
+                Faxnumber: $("#Faxnumberinput").val(),
+                Emailid: $("#Emailidinput").val(),
+                Website: $("#Websiteinput").val(),
+
+                UploadImageName: LogoFileName,
+                creditlimit: $("#creditlimitInput").val(),
+                payterms: $("#paytermsInput").val(),
+                Defaultdiscount: $("#DefaultdiscountInput").val(),
+                Pricelevel: $("#Pricelevelinput").val(),
+                monthlybudget: $("#monthlybudgetInput").val(),
+
+                ContactpersonName: $("#ContactpersonNameinput").val(),
+                Designation: $("#Designationinput").val(),
+                ConperTelnumber: $("#ConperTelnumberinput").val(),
+                MobileNo: $("#MobileNoinput").val(),
+                ConperEmailId: $("#ConperEmailIdinput").val(),
+
+                Allowsendsms: document.getElementById("allow-sendsms-check01").checked,
+                Allowsendemail: document.getElementById("allow-sendemail-check01").checked,
+            }
+            $.ajax({
+                url: "/api/ItemMasterApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(Items),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Items Master',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        // setTimeout(location.reload(true), 10000);
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Items Master',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+
+
+            // }
+
+        }
+
+        function fnEditPdtItems(Id) {
+            // $("#hdnIDInput").val(Id);
+            $.ajax({
+                url: '/api/ItemMasterApi/' + Id,
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    //$('#divLoader').show();
+                },
+                success: function (data) {
+
+                    console.log(data);
+                    $("#AccountCodeinput").val(data.accountCode);
+                    $("#CustomerCodeinput").val(data.customerCode);
+                    $("#CustomerNameinput").val(data.customerName);
+                    $("#Typeinput").val(data.type);
+                    $("#Customergroupinput").val(data.customergroup);
+                    $("#Accounttypeinput").val(data.accounttype);
+                    $("#Currencyinput").val(data.currency);
+                    $("#Allowcostcentreinput").val(data.allowcostcentre);
+                    $("#Tininput").val(data.tin);
+                    $("#VatNumberinput").val(data.vatNumber);
+
+                    //document.getElementById("Iscomposition-check01").checked,
+
+                    $("#Aadharnumberinput").val(data.aadharnumber);
+                    $("#Addressinput").val(data.address);
+                    $("#addressline2input").val(data.addressline2);
+                    $("#addressline3input").val(data.addressline3);
+                    $("#Locationinput").val(data.location);
+                    $("#Stateinput").val(data.state);
+                    $("#Countryinput").val(data.country);
+                    $("#Postalcodeinput").val(data.postalcode);
+                    $("#Telnumberinput").val(data.telnumber);
+                    $("#Faxnumberinput").val(data.faxnumber);
+                    $("#Emailidinput").val(data.emailid);
+                    $("#Websiteinput").val(data.website);
+
+                    // UploadImageName: LogoFileName,
+                    $("#creditlimitInput").val(data.creditlimit);
+                    $("#paytermsInput").val(data.payterms);
+                    $("#DefaultdiscountInput").val(data.defaultdiscount);
+                    $("#Pricelevelinput").val(data.pricelevel);
+                    $("#monthlybudgetInput").val(data.monthlybudget);
+
+                    $("#ContactpersonNameinput").val(data.contactpersonName);
+                    $("#Designationinput").val(data.designation);
+                    $("#ConperTelnumberinput").val(data.conperTelnumber);
+                    $("#MobileNoinput").val(data.mobileNo);
+                    $("#ConperEmailIdinput").val(data.conperEmailId);
+
+                    //document.getElementById("allow-sendsms-check01").checked;
+                    //document.getElementById("allow-sendemail-check01").checked;
+
+                },
+                complete: function (e) {
+                },
+                error: function (e) {
+                    //$('body').removeClass('modal-open');
+                    //$('.modal-backdrop').remove();
+                    console.log(e.responseText);
+                }
+            });
+
+
+        }
+
+        function fnOnUpdatepdtItems() {
+
+            var Items = {
+
+                Id: $("#hdnIDInput").val(),
+                AccountCode: $("#AccountCodeinput").val(),
+                CustomerCode: $("#CustomerCodeinput").val(),
+                CustomerName: $("#CustomerNameinput").val(),
+                Type: $("#Typeinput").val(),
+                Customergroup: $("#Customergroupinput").val(),
+                Accounttype: $("#Accounttypeinput").val(),
+                Currency: $("#Currencyinput").val(),
+                Allowcostcentre: $("#Allowcostcentreinput").val(),
+                Tin: $("#Tininput").val(),
+                VatNumber: $("#VatNumberinput").val(),
+
+                Iscomposition: document.getElementById("Iscomposition-check01").checked,
+
+                Aadharnumber: $("#Aadharnumberinput").val(),
+                Address: $("#Addressinput").val(),
+                addressline2: $("#addressline2input").val(),
+                addressline3: $("#addressline3input").val(),
+                Location: $("#Locationinput").val(),
+                State: $("#Stateinput").val(),
+                Country: $("#Countryinput").val(),
+                Postalcode: $("#Postalcodeinput").val(),
+                Telnumber: $("#Telnumberinput").val(),
+                Faxnumber: $("#Faxnumberinput").val(),
+                Emailid: $("#Emailidinput").val(),
+                Website: $("#Websiteinput").val(),
+
+                UploadImageName: LogoFileName,
+                creditlimit: $("#creditlimitInput").val(),
+                payterms: $("#paytermsInput").val(),
+                Defaultdiscount: $("#DefaultdiscountInput").val(),
+                Pricelevel: $("#Pricelevelinput").val(),
+                monthlybudget: $("#monthlybudgetInput").val(),
+
+                ContactpersonName: $("#ContactpersonNameinput").val(),
+                Designation: $("#Designationinput").val(),
+                ConperTelnumber: $("#ConperTelnumberinput").val(),
+                MobileNo: $("#MobileNoinput").val(),
+                ConperEmailId: $("#ConperEmailIdinput").val(),
+
+                Allowsendsms: document.getElementById("allow-sendsms-check01").checked,
+                Allowsendemail: document.getElementById("allow-sendemail-check01").checked,
+            }
+            $.ajax({
+                url: "/api/CustomerApi",
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(Items),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Item Master',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        // $('#addGroup').modal('hide');
+                        // $('#edit-btn').hide();
+                        // $('#add-btn').show();
+                        // $('#exampleModalLabel').text("Create Account Group");
+
+                        // $("#GroupnameInput").val("");
+                        // $("#GrouptypeInput").val("");
+                        // $("#iddivundergroup").hide();
+                        // $("#UndergroupInput").val("");
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Item Master',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    $('.error').show();
+                }
+            });
+        }
+
+        function fnOnCancelCustomer() {
+            location.href = '/Products/ItemMaster';
+        }
+    </script>
+
+
+
+}

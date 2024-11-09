@@ -1,0 +1,400 @@
+﻿@{
+    ViewBag.Title = "Number Settings";
+    ViewBag.pTitle = "Number Settings Management";
+    ViewBag.pageTitle = "Number Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">Invoice Billing Format Settings</h4>
+                </div><!-- end card header -->
+                <div class="card-body form-steps">
+                    <form class="vertical-navs-step">
+                        <div class="row gy-5">
+                            <div class="col-lg-3">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Branchinput">Branch / Location </label>
+                                        <select class="form-select" id="Branchinput" data-choices data-choices-search-true>
+                                            <option value="" selected>Select</option>
+                                        <option value="Main Location">Main Location</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Settingsforinput">Settings For </label>
+                                        <select class="form-select" onchange="fnonchangevoucher()" id="Settingsforinput" data-choices data-choices-search-true>
+                                            <option value="" selected>Select</option> 
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- end nav -->
+                            </div> <!-- end col-->
+                            <div class="col-lg-6">
+                                <div class="px-lg-4">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="v-pills-bill-address" role="tabpanel" aria-labelledby="v-pills-bill-address-tab">
+                                            <div>
+                                                <h5>Settings</h5> 
+                                            </div>
+
+                                            <div>
+                                                <div class="row g-3">
+                                                    <div class="col-6">
+                                                        <label for="printaftersaveinput" class="form-label">Print After save</label>
+                                                        <select class="form-select" id="printaftersaveinput">
+                                                            <option selected value="">Select</option>
+                                                            <option value="YES">YES</option>
+                                                            <option value="NO">NO</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="printbarcodeaftersaveinput" class="form-label">Print Barcode After save</label>
+                                                        <select class="form-select" id="printbarcodeaftersaveinput">
+                                                            <option selected value="">Select</option>
+                                                            <option value="YES">YES</option>
+                                                            <option value="NO">NO</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="Invnumberingmethodinput" class="form-label">Method of Invoice Numbering</label>
+                                                    <select class="form-select" id="Invnumberingmethodinput" onchange="InvnumberingmethodChange()">
+                                                            <option selected value="">Select</option>
+                                                            <option value="MANUAL">MANUAL</option>
+                                                            <option value="AUTOMATIC">AUTOMATIC</option>
+                                                        </select>
+                                                    </div>
+                                                     
+                                                    <div class="col-6" id="IddivAllowduplicateInvno">
+                                                        <label for="Allowduplicateinvnoinput" class="form-label">Allow duplicates Invoice No.</label>
+                                                        <select class="form-select" id="Allowduplicateinvnoinput">
+                                                            <option selected value="">Select</option>
+                                                            <option value="YES">YES</option>
+                                                            <option value="NO">NO</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="Invnumberstartinput" class="form-label">Invoice Number Starting From</label>
+                                                        <input type="number" class="form-control" id="Invnumberstartinput" placeholder="number" value="1" />
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <label for="MaxNoofdigitsinput" class="form-label">Max No. of Digits</label>
+                                                        <input type="number" class="form-control" id="MaxNoofdigitsinput" placeholder="number" value="0" />
+                                                    </div>
+
+
+                                                    <div class="col-6">
+                                                        <label for="Invoiceprefixinput" class="form-label">Invoice Per-fix</label>
+                                                        <input type="text" class="form-control" id="Invoiceprefixinput" placeholder=" "  />
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <label for="Invoicepostfixinput" class="form-label">Invoice Post-fix</label>
+                                                        <input type="text" class="form-control" id="Invoicepostfixinput" placeholder=" "  />
+                                                    </div>
+
+                                                </div>
+                                                 
+                                            </div>
+                                            <div class="d-flex align-items-start gap-3 mt-4">
+                                            <button type="submit" class="btn btn-success w-sm" onclick="fnOnsaveSettings()" fdprocessedid="vivlg9">Save</button>
+                                                <button type="button" class="btn btn-soft-success" fdprocessedid="06yrki5">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <!-- end tab pane -->
+                                      
+                                    </div>
+                                    <!-- end tab content -->
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        <div class="col-lg-3">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <div>
+                                        <p class="text-muted text-uppercase fs-12 fw-medium mb-2">Products</p>
+                                        <ul class="list-unstyled mb-0 filter-list">
+                                            
+                                            <li> 
+                                                <div class="flex-grow-1">
+                                                    <h5 class="fs-13 mb-0 listname">Electronics</h5>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <span class="badge bg-light text-muted">5</span>
+                                                </div> 
+                                            </li>
+                                            <li> 
+                                                <div class="flex-grow-1">
+                                                    <h5 class="fs-13 mb-0 listname">Furniture</h5>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <span class="badge bg-light text-muted">6</span>
+                                                </div> 
+                                            </li>
+                                            <li>
+                                                <div class="flex-grow-1">
+                                                    <h5 class="fs-13 mb-0 listname">Electronics</h5>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <span class="badge bg-light text-muted">5</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="flex-grow-1">
+                                                    <h5 class="fs-13 mb-0 listname">Furniture</h5>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <span class="badge bg-light text-muted">6</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                            <!-- end nav -->
+                        </div> <!-- end col-->
+                            
+                        </div>
+                        <!-- end row -->
+                    </form>
+                </div>
+            </div>
+            <!-- end -->
+        </div>
+        <!-- end col -->
+    </div>
+
+
+@section scripts{
+
+
+    <script>
+
+        const Mainarray = [];
+        var resdata = "";
+        $(document).ready(function () {
+            $("#IddivAllowduplicateInvno").hide();
+            getVoucherNames();
+            getNumberSettings();
+
+        });
+
+        function fnonchangevoucher() {
+            var VoucherValue = document.getElementById("Settingsforinput").value;
+            resdata.forEach(function (category) {
+
+                if (category.voucherName == VoucherValue) {
+                    $("#Branchinput").val(category.branch);
+                    $("#printaftersaveinput").val(category.printaftersave);
+                    $("#printbarcodeaftersaveinput").val(category.printbarcodeaftersave);
+                    $("#Invnumberingmethodinput").val(category.invnumberingmethod);
+
+                    $("#Allowduplicateinvnoinput").val(category.allowduplicateinvno);
+                    $("#Invnumberstartinput").val(category.invnumberstart);
+                    $("#MaxNoofdigitsinput").val(category.maxNoofdigits);
+                    $("#Invoiceprefixinput").val(category.invoiceprefix);
+                    $("#Invoicepostfixinput").val(category.invoicepostfix);
+                }  
+                else{
+                    $("#Branchinput").val(category.branch);
+                    $("#printaftersaveinput").val("");
+                    $("#printbarcodeaftersaveinput").val("");
+                    $("#Invnumberingmethodinput").val("");
+
+                    $("#Allowduplicateinvnoinput").val("");
+                    $("#Invnumberstartinput").val(1);
+                    $("#MaxNoofdigitsinput").val(0);
+                    $("#Invoiceprefixinput").val("");
+                    $("#Invoicepostfixinput").val("");
+                }
+            });
+        
+        }
+
+
+        function InvnumberingmethodChange() {
+
+            if (document.getElementById("Invnumberingmethodinput").value == "MANUAL") {
+                $("#IddivAllowduplicateInvno").show();
+            }
+            else {
+                $("#IddivAllowduplicateInvno").hide();
+            }
+        }
+
+        function getNumberSettings() { 
+            $.ajax({
+                url: '/api/NumberSettingsApi/',
+                beforeSend: function () {
+                    // $('#loader').show();
+                    // $('#loaderTop').show();
+                },
+                success: function (data) {
+
+                    resdata = data;
+                    data.forEach(function (category) {
+                        const arr = [];
+                        arr.push(category.id);
+                        arr.push(category.branch);
+                        arr.push(category.voucherName);
+                        arr.push(category.printaftersave);
+                        arr.push(category.printbarcodeaftersave);
+                        arr.push(category.invnumberingmethod);
+                        arr.push(category.allowduplicateinvno);
+                        arr.push(category.invnumberstart);
+                        arr.push(category.maxNoofdigits);
+                        arr.push(category.invoiceprefix);
+                        arr.push(category.invoicepostfix);
+                        Mainarray.push(arr);
+                    });
+                    // $('#loader').hide();
+                    // $('#loaderTop').hide();
+                },
+                error: function (e) {
+                    // alert(e.responseText);
+                    // $('#loader').hide();
+                    console.log(e.responseText);
+                },
+                complete: function () {
+                    // $('#loader').hide();
+                }
+            });
+        }
+
+        function getVoucherNames() {
+            $.ajax({
+                url: '/api/VouchersApi/',
+                beforeSend: function () {
+                    // $('#loader').show();
+                    // $('#loaderTop').show();
+                },
+                success: function (data) {
+
+                    console.log(data);
+                    const selectCategory = document.getElementById('Settingsforinput');
+                    data.forEach(function (category) {
+                        const optionDRP = document.createElement('option');
+                        optionDRP.value = category.voucherName;
+                        optionDRP.textContent = category.voucherName;
+                        selectCategory.appendChild(optionDRP);
+                    });
+
+                    // $('#loader').hide();
+                    // $('#loaderTop').hide();
+                },
+                error: function (e) {
+                    // alert(e.responseText);
+                    // $('#loader').hide();
+                    console.log(e.responseText);
+                },
+                complete: function () {
+                    // $('#loader').hide();
+                }
+            });
+        }
+
+        function fnOnsaveSettings() {
+ 
+            var settings = {
+
+                Branch: $("#Branchinput").val(),
+                VoucherName: $("#Settingsforinput").val(),
+                printaftersave: $("#printaftersaveinput").val(),
+                printbarcodeaftersave: $("#printbarcodeaftersaveinput").val(),
+                Invnumberingmethod: $("#Invnumberingmethodinput").val(),
+
+                Allowduplicateinvno: $("#Allowduplicateinvnoinput").val(),
+                Invnumberstart: $("#Invnumberstartinput").val(),
+                MaxNoofdigits: $("#MaxNoofdigitsinput").val(),
+                Invoiceprefix: $("#Invoiceprefixinput").val(),
+                Invoicepostfix: $("#Invoicepostfixinput").val(),
+            }
+
+            $.ajax({
+                url: "/api/NumberSettingsApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(settings),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Number Settings',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        //setTimeout(location.reload(true), 10000);
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Number Settings',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+
+
+            // }
+
+        }
+
+
+    </script>
+
+
+
+}

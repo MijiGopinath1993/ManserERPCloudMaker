@@ -1,0 +1,558 @@
+﻿@{
+    ViewBag.Title = "Customer";
+    ViewBag.pTitle = "Customer Management";
+    ViewBag.pageTitle = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="card" id="customerList">
+    <div class="card-header border-0">
+        <div class="row align-items-center gy-3">
+            <div class="col-sm">
+                <h5 class="card-title mb-0">Customers</h5>
+            </div>
+            <div class="col-sm-auto">
+                <div class="d-flex gap-1 flex-wrap">
+                    <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addCustomer"><i class="ri-add-line align-bottom me-1"></i> Create Customer</button>
+                    <button type="button" class="btn btn-info"><i class="ri-file-download-line align-bottom me-1"></i> Import</button>
+                    <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body border border-dashed border-end-0 border-start-0">
+        <form>
+            <div class="row g-3">
+                <div class="col-xxl-4 col-sm-6">
+                    <div class="search-box">
+                        <input type="text" class="form-control search" placeholder="Search for userId,Name,Department or something...">
+                        <i class="ri-search-line search-icon"></i>
+                    </div>
+                </div>
+                <!--end col-->
+                <!--end col-->
+                <div class="col-xxl-2 col-sm-4">
+                    <div>
+                        <select class="form-control" data-choices data-choices-search-false name="choices-single-default" id="idUserType">
+                            <option value="">Select Type</option>
+                            <option value="all" selected>All</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                </div>
+                <!--end col-->
+                <div class="col-xxl-2 col-sm-4">
+                    <div>
+                        <select class="form-control" data-choices data-choices-search-false name="choices-single-default" id="idsearchPermissionTo">
+                            <option value="">Select PermissionTo</option>
+                            <option value="all" selected>All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--end col-->
+                <div class="col-lg-auto">
+                    <div>
+                        <button type="button" class="btn btn-primary w-100" onclick="SearchData();">
+                            <i class="ri-equalizer-fill me-1 align-bottom"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </form>
+    </div>
+    <div class="card-body pt-2">
+        <div>
+            <div class="table-responsive table-card mb-1">
+                <table class="table table-nowrap align-middle" id="userTable">
+                    <thead class="text-muted table-light">
+                        <tr class="text-uppercase">
+                            <th scope="col" style="width: 25px;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                </div>
+                            </th>
+                            <th class="sort" data-sort="id">Id</th>
+                            <th class="sort" data-sort="accountCode">Account Code</th>
+                            <th class="sort" data-sort="customerName">Customer Name</th>
+                            <th class="sort" data-sort="accounttype">Account Type</th>
+                            <th class="sort" data-sort="location">Location</th>
+                            <th class="sort" data-sort="monthlybudget">Monthly Budget</th>
+                            <th class="sort" data-sort="emailid">Email ID</th>
+                            <th class="sort" data-sort="isActive">Status</th>
+                            <th class="sort" data-sort="action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list form-check-all">
+                        <tr id="idtruserTable">
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td class="id">VZ01</td>
+                            <td class="accountCode">FRH01</td>
+                            <td class="customerName">Frank Hook</td>
+                            <td class="accounttype">Purchase</td>
+                            <td class="location">user</td>
+                            <td class="monthlybudget">0</td>
+                            <td class="emailid">frank@gmail.com</td>
+                            <td class="isActive">Inactive</td> 
+                            <td class="action">
+                                <ul class="list-inline hstack gap-2 mb-0">
+                                    <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                        <a href="#" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                            <i class="ri-pencil-fill fs-16"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
+                                        <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#">
+                                            <i class="ri-delete-bin-5-fill fs-16"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="noresult" style="display: none">
+                    <div class="text-center">
+                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                        <h5 class="mt-2">Sorry! No Result Found</h5>
+                        <p class="text-muted">We've searched more than 150+ customers We did not find any Customers for you search.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <div class="pagination-wrap hstack gap-2">
+                    <a class="page-item pagination-prev disabled" href="#">
+                        Previous
+                    </a>
+                    <ul class="pagination listjs-pagination mb-0"></ul>
+                    <a class="page-item pagination-next" href="#">
+                        Next
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* 
+<div class="card">
+    <div class="card-header border-0 rounded">
+        <div class="row g-2">
+            <div class="col-xl-3">
+                <div class="search-box">
+                    <input type="text" class="form-control" autocomplete="off" id="searchResultList" placeholder="Search for Customers."> <i class="ri-search-line search-icon"></i>
+                </div>
+            </div>
+            <!--end col-->
+            <div class="col-xxl-3 ms-auto">
+                <div> 
+                </div>
+            </div>
+            <!--end col-->
+            <div class="col-lg-auto">
+                <div class="hstack gap-2"> 
+                    <button type="button" class="btn btn-danger"><i class="ri-equalizer-fill me-1 align-bottom"></i> Filters</button>
+                    <a href="/Masters/CreateCustomer" class="btn btn-success" id="addCustomer-btn"> <i class="ri-add-fill me-1 align-bottom"></i>Add</a>
+                    <button type="button" class="btn btn-info"><i class="ri-file-download-line align-bottom me-1"></i> Import</button>
+                    <a href="javascript:window.print()" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Print</a>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+</div> *@
+@* 
+<div class="row mt-4" id="customerstable-gridjs"></div>
+<!--end row-->
+ *@
+
+<div id="noresult" class="d-none">
+    <div class="text-center py-4">
+        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+        <h5 class="mt-2">Sorry! No Result Found</h5>
+        <p class="text-muted mb-0">We've searched more than 150+ Customers We did not find any Customers for you search.</p>
+    </div>
+</div>
+
+<div class="modal fade" id="addCustomer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light p-3">
+                <h5 class="modal-title" id="exampleModalLabel">Create Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+            </div> 
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="AccountCodeinput" class="form-label">Account Code</label>
+                        <input type="text" disabled id="AccountCodeinput" class="form-control" placeholder="Enter Account Code" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="CustomerCodeinput" class="form-label">Customer Code</label>
+                        <input type="text" id="CustomerCodeinput" class="form-control" placeholder="Enter Customer Code" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="CustomerNameinput" class="form-label">Customer Name</label>
+                        <input type="text" id="CustomerNameinput" class="form-control" placeholder="Enter Customer Name" required />
+                        <div class="invalid-feedback">Please enter a customer name.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Emailidinput" class="form-label">Email</label>
+                        <input type="email" id="Emailidinput" class="form-control" placeholder="Enter email" required />
+                        <div class="invalid-feedback">Please enter an email.</div>
+                    </div>
+                    <div>
+                        <label class="form-label" for="Accounttypeinput">Account Type**</label>
+                        <select class="form-select" id="Accounttypeinput" data-choices data-choices-search-true>
+                            <option value="" selected>Select</option>
+                            <option value="Sundry debtors">Sundry debtors</option>
+                        </select>
+                    </div> 
+                    <div>
+                        <label for="IsActiveInput" class="form-label">Status</label>
+                        <select class="form-control" data-choices data-choices-search-false name="status-field" id="IsActiveInput" required>
+                            <option value="">Select Status</option>
+                            <option selected value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" onclick="fnOnsaveCustomer()" class="btn btn-success" id="add-btn">Add Customer</button>
+                        <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
+                    </div>
+                </div> 
+        </div>
+    </div>
+</div>
+
+<!-- removeItemModal -->
+<div id="removeItemModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-2 text-center">
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                        <h4>Are you sure ?</h4>
+                        <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Account Group ?</p>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                    <input type="text" id="hdnIDInput" hidden />
+                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-sm btn-danger " onclick="fnDeleteRecord()" id="delete-product">Yes, Delete It!</button>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ @section scripts{
+
+
+    <script>
+        $(document).ready(function () {
+           
+           // getCustomerslist();
+           
+        });
+        var str_dt = function (e) {
+            var e = new Date(e),
+                t = (e.getHours() + ":" + e.getMinutes()).split(":"),
+                a = 12 <= (n = t[0]) ? "PM" : "AM",
+                n = (n %= 12) || 12,
+                t = (t = t[1]) < 10 ? "0" + t : t;
+            return month = "" + ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][e.getMonth()], day = "" + e.getDate(), year = e.getFullYear(), month.length < 2 && (month = "0" + month), [(day = day.length < 2 ? "0" + day : day) + " " + month + "," + year + " <small class='text-muted'>" + n + ":" + t + " " + a + "</small>"]
+        },
+            checkAll = document.getElementById("checkAll"),
+            perPage = (checkAll && (checkAll.onclick = function () {
+                for (var e = document.querySelectorAll('.form-check-all input[type="checkbox"]'), t = document.querySelectorAll('.form-check-all input[type="checkbox"]:checked').length, a = 0; a < e.length; a++) e[a].checked = this.checked, e[a].checked ? e[a].closest("tr").classList.add("table-active") : e[a].closest("tr").classList.remove("table-active");
+                document.getElementById("remove-actions").style.display = 0 < t ? "none" : "block"
+            }), 5),
+            editlist = !1,
+            options = {
+                valueNames: ["id", "accountCode", "customerName", "accounttype", "location", "monthlybudget", "emailid", "isActive", "action"], //, "status"
+                page: perPage,
+                pagination: !0,
+                plugins: [ListPagination({
+                    left: 2,
+                    right: 2
+                })]
+            },
+            customerList = new List("customerList", options).on("updated", function (e) {
+                0 == e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "block" : document.getElementsByClassName("noresult")[0].style.display = "none";
+                var t = 1 == e.i,
+                    a = e.i > e.matchingItems.length - e.page;
+                document.querySelector(".pagination-prev.disabled") && document.querySelector(".pagination-prev.disabled").classList.remove("disabled"), document.querySelector(".pagination-next.disabled") && document.querySelector(".pagination-next.disabled").classList.remove("disabled"), t && document.querySelector(".pagination-prev").classList.add("disabled"), a && document.querySelector(".pagination-next").classList.add("disabled"), e.matchingItems.length <= perPage ? document.querySelector(".pagination-wrap").style.display = "none" : document.querySelector(".pagination-wrap").style.display = "flex", e.matchingItems.length == perPage && document.querySelector(".pagination.listjs-pagination").firstElementChild.children[0].click(), 0 < e.matchingItems.length ? document.getElementsByClassName("noresult")[0].style.display = "none" : document.getElementsByClassName("noresult")[0].style.display = "block"
+            });
+
+        const xhttp = new XMLHttpRequest;
+        xhttp.onload = function () {
+            var e = JSON.parse(this.responseText);
+            Array.from(e).forEach(function (e) {
+                customerList.add({
+                    id: e.id,
+                    accountCode: e.accountCode,
+                    customerName: e.customerName, 
+                    accounttype: e.accounttype,
+                    location: e.location,
+                    monthlybudget: e.monthlybudget,
+                    emailid: e.emailid,
+                    isActive: isStatus(e.isActive),
+                    action: '<ul class="list-inline hstack gap-2 mb-0">' +
+                        '<li class= "list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">' +
+                        '<a href="#" onclick="fnEditRecord(' + e.id + ')" class= "text-primary d-inline-block edit-item-btn">' +
+                        '<i class="ri-pencil-fill fs-16" > </i>' +
+                        '</a>' +
+                        '</li>' +
+                        '<li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">' +
+                        '<a class="text-danger d-inline-block remove-item-btn" onclick="fnDeleteRecordPopup(' + e.id + ')" href="#">' +
+                        '<i class="ri-delete-bin-5-fill fs-16"> </i>' +
+                        '</a>' +
+                        '</li>' +
+                        '</ul>',
+                    //status: isStatus(e.status)
+                }), customerList.sort("id", {
+                    order: "desc"
+                }) // refreshCallbacks()
+            }), customerList.remove("id", 'VZ01'), fngetAccountCode(customerList)
+        }, xhttp.open("GET", "/api/CustomerApi/"), xhttp.send();
+
+        function isStatus(e) {
+            switch (e) {
+                case true:
+                    return '<span class="badge bg-success-subtle text-success text-uppercase">Active</span>';
+                case false:
+                    return '<span class="badge bg-danger-subtle text-danger text-uppercase">Inactive</span>';
+
+            }
+        }
+        function fngetAccountCode(data) {
+            if (data.items.length > 0) {
+                var custCode = data.items[0]._values.accountCode;
+                var CustId = custCode.replace('CUST', '');
+                var LatestId = parseInt(CustId) + 1;
+                $("#AccountCodeinput").val("CUST" + parseInt(LatestId));
+            }
+            else {
+                var LatestId = 1;
+                $("#AccountCodeinput").val("CUST" + parseInt(LatestId));
+            }
+           
+        }
+
+        function getCustomerslist() {
+            $.ajax({
+                url: '/api/CustomerApi/',
+                beforeSend: function () {
+                    // $('#loader').show();
+                    // $('#loaderTop').show();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        var custCode = data[data.length - 1].accountCode;
+                        var CustId = custCode.replace('CUST', '');
+                        var LatestId = parseInt(CustId) + 1;
+                        document.getElementById("addCustomer-btn").href = "/Masters/CreateCustomer?CustId=" + parseInt(LatestId) + "&IsEdit=false";;
+
+                    }
+                    else {
+                        var LatestId = 1;
+                        document.getElementById("addCustomer-btn").href = "/Masters/CreateCustomer?CustId=" + parseInt(LatestId) + "&IsEdit=false";;
+
+                    }
+                    // var CustID =  (data.length + 1);
+                   
+                    const Mainarray = [];
+                    data.forEach(function (category) {
+                        const arr = [];
+                        arr.push(category.id);
+                        arr.push(category.accountCode);
+                        arr.push(category.customerName);
+                        arr.push(category.accounttype);
+                        arr.push(category.location);
+                        arr.push(category.state);
+                        arr.push(category.telnumber);
+                        arr.push(category.faxnumber);
+                        arr.push(category.emailid);
+                        arr.push(category.monthlybudget);
+                        Mainarray.push(arr);
+                    });
+                },
+                error: function (e) {
+                    // alert(e.responseText);
+                    // $('#loader').hide();
+                    console.log(e.responseText);
+                },
+                complete: function () {
+                    // $('#loader').hide();
+                }
+            });
+
+        }
+
+        function fnEditRecord(Id) {
+
+            location.href = "/Masters/CreateCustomer?CustId=" + Id + "&IsEdit=true";
+
+        }
+
+        function fnDeleteRecordPopup(Id) {
+            $("#hdnIDInput").val(Id);
+            $('#removeItemModal').modal('show');
+        }
+
+        function fnDeleteRecord() {
+            var Id = $("#hdnIDInput").val();
+            if (Id > 0) {
+                $.ajax({
+                    url: '/api/CustomerApi/' + Id,
+                    type: "DELETE",
+                    dataType: 'json',
+                    beforeSend: function () {
+                        // $('#loader').show();
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    },
+                    complete: function () {
+                        location.reload(true)
+                    },
+                    error: function (e) {
+                        // alert(e.responseText);
+
+                        console.log(e.responseText);
+                    }
+                });
+
+            }
+
+        }
+         
+        function fnOnsaveCustomer() {
+
+            var IsActive = false;
+            if (parseInt($("#IsActiveInput").val()) == 1) {
+                IsActive = true;
+            }
+            var customer = {
+                AccountCode: $("#AccountCodeinput").val(),
+                CustomerCode: $("#CustomerCodeinput").val(),
+                CustomerName: $("#CustomerNameinput").val(),
+                Emailid: $("#Emailidinput").val(),
+                Accounttype: $("#Accounttypeinput").val(),
+                IsActive: IsActive,
+
+            }
+            $.ajax({
+                url: "/api/CustomerApi",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(customer),
+                beforeSend: function () {
+                    // $('#divAlert').show();
+                },
+                //success: function (data, jqXHR) {
+                success: function (data) {
+
+                    if (data.status) {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                        $('#addCustomer').modal('hide');
+                        $("#CustomerCodeinput").val("");
+                            $("#CustomerNameinput").val("");
+                            $("#Emailidinput").val("");
+                            $("#Accounttypeinput").val("");
+                    }
+                    else {
+                        Swal.fire(
+                            {
+                                title: 'Customers',
+                                text: data.message,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    }
+
+                },
+                complete: function () {
+
+                    // $('#divAlert').hide();
+                    // $('#SampleModal').modal('hide');
+                    // location.reload(true)
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+              
+        }
+
+      
+    </script>
+
+
+
+}

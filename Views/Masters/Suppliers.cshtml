@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "Suppliers";
+    ViewBag.pTitle = "Supplier Management";
+    ViewBag.pageTitle = "Suppliers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">@ViewBag.ptitle</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.pagetitle</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.ptitle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+<div class="card">
+    <div class="card-header border-0 rounded">
+        <div class="row g-2">
+            <div class="col-xl-3">
+                <div class="search-box">
+                    <input type="text" class="form-control" autocomplete="off" id="searchResultList" placeholder="Search for Suppliers."> <i class="ri-search-line search-icon"></i>
+                </div>
+            </div>
+            <!--end col-->
+            <div class="col-xxl-3 ms-auto">
+                <div>
+                    @* <select class="form-control" id="category-select">
+                    <option value="All">Select User Type</option>
+                    <option value="All">All</option>
+                    <option value="User">User</option>
+                    </select> *@
+                </div>
+            </div>
+            <!--end col-->
+            <div class="col-lg-auto">
+                <div class="hstack gap-2">
+                    <button type="button" class="btn btn-danger"><i class="ri-equalizer-fill me-1 align-bottom"></i> Filters</button>
+                    <a href="/Masters/CreateSupplier" class="btn btn-success" id="addSupplier-btn"> <i class="ri-add-fill me-1 align-bottom"></i>Add</a>
+                    <button type="button" class="btn btn-info"><i class="ri-file-download-line align-bottom me-1"></i> Import</button>
+                    <a href="javascript:window.print()" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Print</a>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+</div>
+
+<div class="row mt-4" id="suppliers-list"></div>
+<!--end row-->
+
+
+<div id="noresult" class="d-none">
+    <div class="text-center py-4">
+        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+        <h5 class="mt-2">Sorry! No Result Found</h5>
+        <p class="text-muted mb-0">We've searched more than 150+ Users We did not find any Users for you search.</p>
+    </div>
+</div>
+
+
+<!-- removeItemModal -->
+<div id="removeItemModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-2 text-center">
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                        <h4>Are you sure ?</h4>
+                        <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Account Group ?</p>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                    <input type="text" id="hdnIDInput" hidden />
+                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-sm btn-danger " onclick="fnDeleteRecord()" id="delete-product">Yes, Delete It!</button>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            getSupllierslist();
+        });
+
+        function getSupllierslist() {
+            $.ajax({
+                url: '/api/SupplierApi/',
+                beforeSend: function () {
+                    // $('#loader').show();
+                    // $('#loaderTop').show();
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+                        var SupCode = data[data.length - 1].supplierCode;
+                        var SupId = SupCode.replace('SUP', '');
+                        var LatestId = parseInt(SupId) + 1;
+                        document.getElementById("addSupplier-btn").href = "/Masters/CreateSupplier?SupId=" + parseInt(LatestId) + "&IsEdit=false";
+
+                    }
+                    else { 
+                        var LatestId = 1;
+                        document.getElementById("addSupplier-btn").href = "/Masters/CreateSupplier?SupId=" + parseInt(LatestId) + "&IsEdit=false";
+
+                    }
+
+                    var html = "";
+
+                    const Mainarray = [];
+                    data.forEach(function (category) {
+                        const arr = [];
+                        arr.push(category.id);
+                        arr.push(category.supplierCode);
+                        arr.push(category.supplierName);
+                        arr.push(category.accountType);
+                        arr.push(category.location);
+                        arr.push(category.state);
+                        arr.push(category.telnumber);
+                        arr.push(category.faxnumber);
+                        arr.push(category.emailid);
+                        arr.push(category.monthlybudget);
+                        Mainarray.push(arr);
+
+                         html += '<div class="col-xl-3 col-lg-6">'
+                                + '<div class="card ribbon-box right overflow-hidden">  '
+                                +  '<div class="card-body text-center p-4"> '
+                            + '<img src="/Admin/dist/material/assets/images/companies/img-2.png" alt="" height="45"> '
+                            + '<h5 class="mb-1 mt-4"><a href="/Masters/SupplierDetails" class="link-primary">' + category.supplierName + '</a></h5>'
+                                        +  '<p class="text-muted mb-4">' + category.supplierCode + '</p> '
+                                +  '<div class="row justify-content-center">      '
+                                +  '<div class="col-lg-8">              '
+                        +  '<div id="chart-seller' + category.id + '" data-colors=\'[""]\'  dir="ltr"></div>'
+                                +  '</div>                </div>            '
+                                +   '<div class="row mt-4">            '
+                                + '<div class="col-lg-6 border-end-dashed border-end">    '
+                                + '<h5> 00 </h5>                    '
+                                + '<span class="text-muted">Item Stock</span>    '
+                                + '</div>                  '
+                                + '<div class="col-lg-6">    '
+                                +  '<h5> 00</h5> '
+                                + '<span class="text-muted">Monthly Budget</span> '
+                                + '</div>                </div>                '
+                                + '<div class="mt-4">              '
+                                + '<a href="/Masters/SupplierDetails" class="btn btn-light w-100">View Details</a>    '
+                                + '</div>            </div>        </div>    </div>';
+                        
+                            });
+                    $('#suppliers-list').html(html);
+
+                    // new gridjs.Grid({
+                    //     columns: [
+                    //         {
+                    //             name: 'ID',
+                    //             formatter: (function (cell) {
+                    //                 return gridjs.html('' + cell + '');
+                    //             })
+                    //         },
+                    //         {
+                    //             name: 'Code',
+                    //             width: '100px',
+                    //         },
+                    //         {
+                    //             name: 'Supplier Name',
+                    //             width: '200px',
+                    //         },
+                    //         {
+                    //             name: 'Account Type',
+                    //             width: '200px',
+                    //         },
+                    //         {
+                    //             name: 'Location',
+                    //             width: '150px',
+                    //         },
+                    //         {
+                    //             name: 'State',
+                    //             width: '250px',
+                    //         },
+                    //         {
+                    //             name: 'Contact number',
+                    //             width: '180px',
+                    //         },
+                    //         {
+                    //             name: 'Fax number',
+                    //             width: '150px',
+                    //         },  
+                    //         {
+                    //             name: 'Email ID',
+                    //             formatter: (function (cell) {
+                    //                 return gridjs.html('' + cell + '');
+                    //             })
+                    //         },
+                    //         {
+                    //             name: 'Balance',
+                    //             width: '150px',
+                    //         }, 
+                    //         {
+                    //             name: 'Actions',
+                    //             width: '120px',
+                    //             formatter: function (e, t) {
+                    //                 return gridjs.html('<ul class="list-inline hstack gap-2 mb-0"><li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit"><a href="#" onclick="fnEditRecord(' + t._cells[0].data + ')" data-id=' + t._cells[0].data + ' class="text-primary d-inline-block edit-item-btn"><i class="ri-pencil-fill fs-16"></i></a> </li><li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove"><a class="text-danger d-inline-block remove-item-btn"data-id=' + t._cells[0].data + ' onclick="fnDeleteRecordPopup(' + t._cells[0].data + ')"  href="#"><i class="ri-delete-bin-5-fill fs-16"></i></a> </li></ul>')
+                    //             }
+                    //         },
+                    //     ],
+                    //     pagination: {
+                    //         limit: 10
+                    //     },
+                    //     sort: true,
+                    //     search: false,
+                    //     data: Mainarray,
+                    // }).render(document.getElementById("supplierstable-gridjs"));
+                    // $('.gridjs-head').hide();
+
+                    // $('#loader').hide();
+                    // $('#loaderTop').hide();
+                },
+                error: function (e) {
+                    // alert(e.responseText);
+                    // $('#loader').hide();
+                    console.log(e.responseText);
+                },
+                complete: function () {
+                    // $('#loader').hide();
+                }
+            });
+
+        }
+
+        function fnEditRecord(Id) {
+
+            location.href = "/Masters/CreateSupplier?SupId=" + Id + "&IsEdit=true";
+
+        }
+
+        function fnDeleteRecordPopup(Id) {
+            $("#hdnIDInput").val(Id);
+            $('#removeItemModal').modal('show');
+        }
+
+        function fnDeleteRecord() {
+            var Id = $("#hdnIDInput").val();
+            if (Id > 0) {
+                $.ajax({
+                    url: '/api/SupplierApi/' + Id,
+                    type: "DELETE",
+                    dataType: 'json',
+                    beforeSend: function () {
+                        // $('#loader').show();
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        Swal.fire(
+                            {
+                                title: 'Suppliers',
+                                text: data.message,
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                                buttonsStyling: false,
+                                showCloseButton: true
+                            }
+                        )
+                    },
+                    complete: function () {
+                        location.reload(true)
+                    },
+                    error: function (e) {
+                        // alert(e.responseText);
+
+                        console.log(e.responseText);
+                    }
+                });
+
+            }
+
+        }
+
+        // function loadSellerList(e, t) {
+        //     var r = Math.ceil(e.length / itemsPerPage);
+        //     r < (t = t < 1 ? 1 : t) && (t = r), document.getElementById("seller-list").innerHTML = "";
+        //     for (var a, s = (t - 1) * itemsPerPage; s < t * itemsPerPage && s < e.length; s++) e[s] && (a = e[s].trending ? '<div class="ribbon ribbon-info ribbon-shape trending-ribbon"><i class="ri-flashlight-fill text-white align-bottom"></i> <span class="trending-ribbon-text">Trending</span></div>' : "", document.getElementById("seller-list").innerHTML += '<div class="col-xl-3 col-lg-6">        <div class="card ribbon-box right overflow-hidden">            <div class="card-body text-center p-4">                ' + a + '                <img src="' + e[s].shop[0].img + '" alt="' + e[s].shop[0].img_alt + '" height="45">                <h5 class="mb-1 mt-4"><a href="apps-ecommerce-seller-details.html" class="link-primary">' + e[s].shop[0].name + '</a></h5>                <p class="text-muted mb-4">' + e[s].seller + '</p>                <div class="row justify-content-center">                    <div class="col-lg-8">                        <div id="chart-seller' + e[s].id + '" data-colors=\'["' + e[s].chartColor + '"]\'  dir="ltr"></div>                    </div>                </div>                <div class="row mt-4">                    <div class="col-lg-6 border-end-dashed border-end">                        <h5>' + e[s].stock + '</h5>                        <span class="text-muted">Item Stock</span>                    </div>                    <div class="col-lg-6">                        <h5>' + e[s].wallet_balance + '</h5>                        <span class="text-muted">Wallet Balance</span>                    </div>                </div>                <div class="mt-4">                    <a href="apps-ecommerce-seller-details.html" class="btn btn-light w-100">View Details</a>                </div>            </div>        </div>    </div>');
+        //     paginationEvents(), pageEvent(e), selectedPage(), 1 == currentPage ? prevButton.parentNode.classList.add("disabled") : prevButton.parentNode.classList.remove("disabled"), currentPage == r ? nextButton.parentNode.classList.add("disabled") : nextButton.parentNode.classList.remove("disabled"), loadCharts()
+        //     document.getElementById("seller-list").innerHTML += '<div class="col-xl-3 col-lg-6">    
+        //     '<div class="card ribbon-box right overflow-hidden">  '
+        //     '<div class="card-body text-center p-4"> ' + a + '  
+        //     '<img src="' + e[s].shop[0].img + '" alt="' + e[s].shop[0].img_alt + '" height="45"> '
+        //     '<h5 class="mb-1 mt-4"><a href="apps-ecommerce-seller-details.html" class="link-primary">' + e[s].shop[0].name + '</a></h5>'
+        //     '<p class="text-muted mb-4">' + e[s].seller + '</p> '
+        //     '<div class="row justify-content-center">      '
+        //     '<div class="col-lg-8">              '
+        //     '<div id="chart-seller' + e[s].id + '" data-colors=\'["' + e[s].chartColor + '"]\'  dir="ltr"></div>'
+        //     '</div>                </div>            '
+        //     '<div class="row mt-4">            '
+        //     '<div class="col-lg-6 border-end-dashed border-end">    '
+        //     '<h5>' + e[s].stock + '</h5>                    '
+        //     '<span class="text-muted">Item Stock</span>    '
+        //     '</div>                  '
+        //     '<div class="col-lg-6">    '
+        //     '<h5>' + e[s].wallet_balance + '</h5> '
+        //     '<span class="text-muted">Wallet Balance</span> '
+        //     '</div>                </div>                '
+        //     '<div class="mt-4">              '
+        //     '<a href="apps-ecommerce-seller-details.html" class="btn btn-light w-100">View Details</a>    '
+        //     '</div>            </div>        </div>    </div>'
+        
+        // }
+    </script>
+
+
+
+}

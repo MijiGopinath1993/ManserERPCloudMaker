@@ -1,0 +1,573 @@
+﻿@{
+    ViewBag.Title = "Sales Quotation Form";
+    ViewBag.pTitle = "Sales Form Management";
+    ViewBag.pageTitle = "Sales Quotation Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">Create Invoice</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Invoices</a></li>
+                    <li class="breadcrumb-item active">Create Invoice</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row justify-content-center">
+    <div class="col-xxl-11">
+        <div class="card">
+            
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-lg-3 col-sm-6">
+                            <label for="invoicenoInput">Invoice No</label>
+                        <input type="text" class="form-control bg-light border-0" id="invoicenoInput" placeholder="Invoice No. #VL25000355" value="#VL25000355" readonly="readonly" />
+                        </div>
+                        <!--end col-->
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                        <div>
+                            <label for="date-field">Date</label>
+                            <input type="text" class="form-control bg-light border-0" id="date-field" data-provider="flatpickr" data-time="true" placeholder="Select Date-time">
+                        </div>
+                    </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <label for="PaymentTypeinput">Payment Type</label>
+                            <div class="input-light">
+                                <select class="form-control bg-light border-0" data-choices data-choices-search-false id="PaymentTypeinput" required>
+                                    <option value="">Select Payment Type</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Credit">Credit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <label for="LedgerAccountinput">Ledger Account</label>
+                            <div class="input-light">
+                                <select class="form-control bg-light border-0" data-choices data-choices-search-false id="LedgerAccountinput" required>
+                                    <option value="">Select Ledger Account</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--end col--> 
+                    </div>
+                <div class="row g-3">
+                    <div class="col-lg-3 col-sm-6">
+                        <label for="WarehouseInput">Warehouse</label>
+                        <select class="form-control bg-light border-0" data-choices data-choices-search-false id="WarehouseInput" required>
+                            <option value="">Select Warehouse </option>
+                        </select>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                          @* <div>
+                            <label for="date-field">Invoice Date</label>
+                            <input type="text" class="form-control bg-light border-0" id="date-field" data-provider="flatpickr" data-time="true" placeholder="Select Date-time">
+                        </div> *@  
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                        @* <label for="PaymentTypeinput">Payment Type</label>
+                        <div class="input-light">
+                            <select class="form-control bg-light border-0" data-choices data-choices-search-false id="PaymentTypeinput" required>
+                                <option value="">Select Payment Type</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Credit">Credit</option>
+                            </select>
+                        </div> *@
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                       @*  <label for="LedgerAccountinput">Ledger Account</label>
+                        <div class="input-light">
+                            <select class="form-control bg-light border-0" data-choices data-choices-search-false id="LedgerAccountinput" required>
+                                <option value="">Select Ledger Account</option>
+                            </select>
+                        </div> *@
+                    </div>
+                    <!--end col-->
+                </div>
+                    <!--end row-->
+                    <div class="row g-3">
+                        <div class="col-lg-6 col-sm-6">
+                        <label for="billingAddressinput">Billing Address</label>
+                        <input type="text" class="form-control bg-light border-0" id="billingAddressinput"  placeholder="Address" required> 
+                        </div>
+                        <!--end col-->
+                        <div class="col-lg-6 col-sm-6">
+                            <div>
+                            <label for="shippingAddressinput">Shipping Address</label>
+                            <input type="text" class="form-control bg-light border-0" id="shippingAddressinput"  placeholder="Address" required> 
+                            </div>
+                        </div>
+                        <!--end col-->  
+                    </div>
+                    <!--end row--> 
+                <div class="row g-3">
+                    <div class="col-lg-3 col-sm-6">
+                        <label for="PrintNameInput">Print Name</label>
+                        <input type="text" class="form-control bg-light border-0" id="PrintNameInput" placeholder="Print Name" value="" required />
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <label for="RefNameInput">Ref Name</label>
+                        <input type="text" class="form-control bg-light border-0" id="RefNameInput" placeholder="Ref Name" value="" required />
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                        <label for="EmployeeNameinput">Employee Name</label>
+                        <div class="input-light">
+                            <select class="form-control bg-light border-0" data-choices data-choices-search-false id="EmployeeNameinput" required>
+                                <option value="">Select Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                        <label for="Locationinput">Location</label>
+                        <div class="input-light">
+                            <select class="form-control bg-light border-0" data-choices data-choices-search-false id="Locationinput" required>
+                                <option value="">Select Location</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+                </div>
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-lg-2 col-sm-6">
+                        <label for="ProductCodeInput">Product Code</label>
+                        <input type="text" class="form-control bg-light border-0" id="ProductCodeInput" placeholder="#VL25000355" value="#VL25000355" readonly="readonly" />
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-3 col-sm-6">
+                        <div>
+                            <label for="ProductNameInput">Product Name</label>
+                            <input type="text" class="form-control bg-light border-0" id="ProductNameInput" placeholder=" " required>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-1 col-sm-6">
+                        <div class="input-light">
+                            <label for="QuantityInput">Qty</label>
+                            <input type="text" class="form-control bg-light border-0" id="QuantityInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                     <div class="col-lg-1 col-sm-6">
+                        <div class="input-light">
+                            <label for="PriceInput">Price</label>
+                            <input type="text" class="form-control bg-light border-0" id="PriceInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-sm-6">
+                        <div class="input-light">
+                            <label for="DiscountInput">Discount</label>
+                            <input type="text" class="form-control bg-light border-0" id="DiscountInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-sm-6">
+                        <div class="input-light">
+                            <label for="TaxInput">Tax</label>
+                            <input type="text" class="form-control bg-light border-0" id="TaxInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                     <div class="col-lg-1 col-sm-6">
+                        <div class="input-light">
+                            <label for="NetRateInput">Net Rate</label>
+                            <input type="text" class="form-control bg-light border-0" id="NetRateInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="input-light">
+                            <label for="AmountInput">Amount</label>
+                            <input type="text" class="form-control bg-light border-0" id="AmountInput" placeholder="" value="" required />
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->  
+            </div> 
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="invoice-table table table-borderless table-nowrap mb-0">
+                        <thead class="align-middle">
+                            <tr class="table-active">
+                                <th scope="col" style="width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                    </div>
+                                </th>
+                                <th data-sort="Code" scope="col">Code</th>
+                                <th data-sort="Name" scope="col">Name</th>
+                                <th data-sort="Qty" scope="col">Qty</th>
+                                <th data-sort="Price" scope="col">Price</th>
+                                <th data-sort="Discount" scope="col">Discount</th>
+                                <th data-sort="Tax" scope="col">Tax</th>
+                                <th data-sort="Tax_Amount" scope="col">Tax Amount</th>
+                                <th data-sort="Net_Rate" scope="col">Net Rate</th>
+                                <th data-sort="Amount" scope="col">Amount</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list form-check-all">
+                            <tr>
+                                <th scope="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
+                                    </div>
+                                </th>
+                                <td class="Code"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ001</a></td>
+                                <td class="Name"> pdt 1 </td>
+                                <td class="Qty">1</td>
+                                <td class="Price">55.00</td>
+                                <td class="Discount">0</td>
+                                <td class="Tax">3</td>
+                                <td class="Tax_Amount">1.65</td>
+                                <td class="Net_Rate">56.65</td>
+                                <td class="Amount">56.65</td>
+                                <td>
+                                    <ul class="list-inline hstack gap-2 mb-0">
+                                        <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit">
+                                            <a href="#showModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <i class="ri-pencil-fill fs-16"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
+                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal">
+                                                <i class="ri-delete-bin-5-fill fs-16"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
+                                    </div>
+                                </th>
+                                <td class="Code"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ002</a></td>
+                                <td class="Name"> pdt 2 </td> 
+                                <td class="Qty">1</td>
+                                <td class="Price">55.00</td>
+                                <td class="Discount">0</td>
+                                <td class="Tax">3</td>
+                                <td class="Tax_Amount">1.65</td>
+                                <td class="Net_Rate">56.65</td>
+                                <td class="Amount">56.65</td>
+                                <td>
+                                    <ul class="list-inline hstack gap-2 mb-0">
+                                        <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit">
+                                            <a href="#showModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <i class="ri-pencil-fill fs-16"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" aria-label="Remove" data-bs-original-title="Remove">
+                                            <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteRecordModal">
+                                                <i class="ri-delete-bin-5-fill fs-16"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> 
+                                </th>
+                                <td class="Code"></td> 
+                                <td class="" colspan="2"><b> Total :</b> </td>
+                                <td class="Price"><b> 110.00</b></td>
+                                <td class="Discount"><b>0 </b></td>
+                                <td class="Tax"><b> 6</b> </td>
+                                <td class="Tax_Amount"><b>3.30 </b></td>
+                                <td class="Net_Rate"><b> 113.30</b></td>
+                                <td class="Amount"><b>113.30 </b></td>
+                                <td> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="noresult" style="display: none">
+                        <div class="text-center">
+                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                            <h5 class="mt-2">Sorry! No Result Found</h5>
+                            <p class="text-muted mb-0">We've searched more than 150+ contacts We did not find any contacts for you search.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                                    <div class="card-header">
+                                        <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#SalesForm-Addanddebuct" role="tab" aria-selected="true">
+                                                   Additions & Deductions
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                 <a class="nav-link" data-bs-toggle="tab" href="#SalesForm-Lastpurchasedetails" role="tab" aria-selected="false" tabindex="-1">
+                                                    Last Purchase Details
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#SalesForm-History" role="tab" aria-selected="false" tabindex="-1">
+                                                    History
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                 <a class="nav-link" data-bs-toggle="tab" href="#SalesForm-Billwiseadjustment" role="tab" aria-selected="false" tabindex="-1">
+                                                   Billwise Adjustment
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#SalesForm-Pulldata" role="tab" aria-selected="false" tabindex="-1">
+                                                    Pull Data
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active show" id="SalesForm-Addanddebuct" role="tabpanel">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="manufacturer-name-input">Manufacturer Name</label>
+                                                                            <input type="text" class="form-control" id="manufacturer-name-input" placeholder="Enter manufacturer name" fdprocessedid="36wnvs">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="manufacturer-brand-input">Manufacturer Brand</label>
+                                                                            <input type="text" class="form-control" id="manufacturer-brand-input" placeholder="Enter manufacturer brand" fdprocessedid="zamui4">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end row -->
+
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="stocks-input">Stocks</label>
+                                                                            <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required="" fdprocessedid="2ht7l7">
+                                                                            <div class="invalid-feedback">Please Enter a product stocks.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="product-price-input">Price</label>
+                                                                            <div class="input-group has-validation mb-3">
+                                                                                <span class="input-group-text" id="product-price-addon">$</span>
+                                                                                <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required="" fdprocessedid="984h2e">
+                                                                                <div class="invalid-feedback">Please Enter a product price.</div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="product-discount-input">Discount</label>
+                                                                            <div class="input-group mb-3">
+                                                                                <span class="input-group-text" id="product-discount-addon">%</span>
+                                                                                <input type="text" class="form-control" id="product-discount-input" placeholder="Enter discount" aria-label="discount" aria-describedby="product-discount-addon" fdprocessedid="vczkqh">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="orders-input">Orders</label>
+                                                                            <input type="text" class="form-control" id="orders-input" placeholder="Orders" required="" fdprocessedid="c4u6nq">
+                                                                            <div class="invalid-feedback">Please Enter a product orders.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+                                                                </div>
+                                                                <!-- end row -->
+                                                            </div>
+                                                            <!-- end tab-pane -->
+                                            <div class="tab-pane" id="SalesForm-Lastpurchasedetails" role="tabpanel">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-title-input">Meta title</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta title" id="meta-title-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-keywords-input">Meta Keywords</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta keywords" id="meta-keywords-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+                                                                </div>
+                                                                <!-- end row -->
+
+                                                                <div>
+                                                                    <label class="form-label" for="meta-description-input">Meta Description</label>
+                                                                    <textarea class="form-control" id="meta-description-input" placeholder="Enter meta description" rows="3"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end tab pane -->
+                                            <div class="tab-pane" id="SalesForm-History" role="tabpanel">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="manufacturer-name-input">Manufacturer Name</label>
+                                                                            <input type="text" class="form-control" id="manufacturer-name-input" placeholder="Enter manufacturer name" fdprocessedid="36wnvs">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="manufacturer-brand-input">Manufacturer Brand</label>
+                                                                            <input type="text" class="form-control" id="manufacturer-brand-input" placeholder="Enter manufacturer brand" fdprocessedid="zamui4">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end row -->
+
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="stocks-input">Stocks</label>
+                                                                            <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required="" fdprocessedid="2ht7l7">
+                                                                            <div class="invalid-feedback">Please Enter a product stocks.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="product-price-input">Price</label>
+                                                                            <div class="input-group has-validation mb-3">
+                                                                                <span class="input-group-text" id="product-price-addon">$</span>
+                                                                                <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required="" fdprocessedid="984h2e">
+                                                                                <div class="invalid-feedback">Please Enter a product price.</div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="product-discount-input">Discount</label>
+                                                                            <div class="input-group mb-3">
+                                                                                <span class="input-group-text" id="product-discount-addon">%</span>
+                                                                                <input type="text" class="form-control" id="product-discount-input" placeholder="Enter discount" aria-label="discount" aria-describedby="product-discount-addon" fdprocessedid="vczkqh">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="orders-input">Orders</label>
+                                                                            <input type="text" class="form-control" id="orders-input" placeholder="Orders" required="" fdprocessedid="c4u6nq">
+                                                                            <div class="invalid-feedback">Please Enter a product orders.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+                                                                </div>
+                                                                <!-- end row -->
+                                                            </div>
+                                                            <!-- end tab-pane -->
+                                            <div class="tab-pane" id="SalesForm-Billwiseadjustment" role="tabpanel">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-title-input">Meta title</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta title" id="meta-title-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-keywords-input">Meta Keywords</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta keywords" id="meta-keywords-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+                                                                </div>
+                                                                <!-- end row -->
+
+                                                                <div>
+                                                                    <label class="form-label" for="meta-description-input">Meta Description</label>
+                                                                    <textarea class="form-control" id="meta-description-input" placeholder="Enter meta description" rows="3"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end tab pane -->
+                                            <div class="tab-pane" id="SalesForm-Pulldata" role="tabpanel">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-title-input">Meta title</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta title" id="meta-title-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="meta-keywords-input">Meta Keywords</label>
+                                                                            <input type="text" class="form-control" placeholder="Enter meta keywords" id="meta-keywords-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end col -->
+                                                                </div>
+                                                                <!-- end row -->
+
+                                                                <div>
+                                                                    <label class="form-label" for="meta-description-input">Meta Description</label>
+                                                                    <textarea class="form-control" id="meta-description-input" placeholder="Enter meta description" rows="3"></textarea>
+                                                                </div>
+                                                            </div>
+                                                 <!-- end tab pane -->
+                                        </div>
+                                        <!-- end tab content -->
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+ 
+                <div class="hstack gap-2 justify-content-end d-print-none mt-4">
+                    <button type="submit" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Save</button>
+                    <a href="javascript:window.print()" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Print</a>
+                    @* <a href="javascript:void(0);" class="btn btn-primary"><i class="ri-download-2-line align-bottom me-1"></i> Download Invoice</a> *@
+                    <a href="javascript:void(0);" class="btn btn-primary"><i class="ri-send-plane-fill align-bottom me-1"></i> Send Invoice</a>
+                    <a href="javascript:void(0);" class="btn btn-danger"><i class="ri-delete-bin-3-line align-bottom me-1"></i> Delete</a>
+                </div>
+            </div>
+             
+    </div>
+    <!--end col-->
+</div>
+</div>
+<!--end row-->
+@section scripts{
+
+
+    <script> 
+        $(document).ready(function () {
+            // fngetGrouplist();
+             
+            // // Get file input element
+            // let fileInput = document.getElementById('profile-img-file-input');
+            // fileInput.addEventListener('change', function (event) {
+            //     // Get file name
+            //     let fileName = fileInput.files[0].name;
+            //     LogoFileName = fileName;
+            // }); 
+        });
+        
+         
+    </script>
+
+  
+}
